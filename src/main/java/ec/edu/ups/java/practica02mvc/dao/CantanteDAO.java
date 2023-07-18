@@ -17,10 +17,12 @@ import java.util.List;
  */
 public class CantanteDAO implements ICantanteDAO {
 
+    String ruta;
     private List<Cantante> listaCantantes;
 
     public CantanteDAO() {
         listaCantantes = new ArrayList<>();
+        ruta= "C:\\Users\\paulc\\OneDrive\\Desktop\\Practica07-main\\src\\main\\java\\ec\\edu\\ups\\java\\practica02mvc\\compositores.dat";
     }
 
     @Override
@@ -63,8 +65,8 @@ public class CantanteDAO implements ICantanteDAO {
 
     public void agregarCancion(Disco disco) {
 
-        Cantante cantante= new Cantante();
-     
+        Cantante cantante = new Cantante();
+
         cantante.AgregarDisco(disco);
     }
 
