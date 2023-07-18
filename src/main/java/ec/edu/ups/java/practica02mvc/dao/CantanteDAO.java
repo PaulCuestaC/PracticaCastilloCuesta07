@@ -8,6 +8,7 @@ import ec.edu.ups.java.practica02mvc.idao.ICantanteDAO;
 import ec.edu.ups.java.practica02mvc.modelo.Cancion;
 import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import ec.edu.ups.java.practica02mvc.modelo.Disco;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,17 +17,35 @@ import java.util.List;
  * @author ESTUDIANTE
  */
 public class CantanteDAO implements ICantanteDAO {
- String ruta;
+
+    private String ruta;
     private List<Cantante> listaCantantes;
 
     public CantanteDAO() {
         listaCantantes = new ArrayList<>();
-        ruta= "C:\\Users\\paulc\\OneDrive\\Desktop\\Practica07-main\\src\\main\\java\\ec\\edu\\ups\\java\\practica02mvc\\compositores.dat";
+        ruta = "C:\\Users\\paulc\\OneDrive\\Desktop\\Practica07-main\\src\\main\\java\\ec\\edu\\ups\\java\\practica02mvc\\compositores.dat";
     }
 
     @Override
     public void create(Cantante cantante) {
-        listaCantantes.add(cantante);
+        try {
+            RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");
+            //Escribe desde el final del archivo
+            archivo.seek(archivo.length());
+            //Escribir en archivo binario
+            String nombre = cantante.getNombre();
+            String apellido = cantante.getApellido();
+            String codigo = cantante.getCodigo();
+            String numeroMusical = cantante.getGeneroMusical();
+            String nacionalidad = cantante.getNacionalidad();
+            String nombreArtistico = cantante.getNombreArtistico();
+            int edad = cantante.getEdad();
+            int numeroConciertos = cantante.getNumeroDeConciertos();
+            int numeroGiras = cantante.getNumeroDeGiras();
+            int numeroSencillos = cantante.getNumeroDeSencillos();
+            double salario = cantante.getSalario();
+            List<Disco> discografia = cantante.getDiscografia();
+        }
     }
 
     @Override
@@ -64,8 +83,8 @@ public class CantanteDAO implements ICantanteDAO {
 
     public void agregarCancion(Disco disco) {
 
-        Cantante cantante= new Cantante();
-     
+        Cantante cantante = new Cantante();
+
         cantante.AgregarDisco(disco);
     }
 

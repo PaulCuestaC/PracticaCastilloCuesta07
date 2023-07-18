@@ -473,9 +473,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             ventanaCrearCompositor = new VentanaCrearCompositor(controladorCompositor);
             desktopPane.add(ventanaCrearCompositor);
         }
-        
-        ventanaCrearCompositor.setVisible(true);          // TODO add your handling code here:
+        ventanaCrearCompositor.setVisible(true);   
         ventanaCrearCompositor.cambiarIdioma(localizacion);
+               // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemCrearCompositorActionPerformed
 
     private void jMenuItemBuscarCompositorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBuscarCompositorActionPerformed
@@ -721,6 +721,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

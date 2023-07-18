@@ -132,6 +132,12 @@ public class VentanaCrearCompositor extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre");
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Crear compositor");
@@ -280,6 +286,15 @@ public class VentanaCrearCompositor extends javax.swing.JInternalFrame {
         this.limpiarCampos();
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+
+    if(txtNombre.getText().length() >= 25)
+    {
+        evt.consume();
+    }
+     
+    }//GEN-LAST:event_txtNombreKeyTyped
     public void limpiarCampos() {
         this.txtApellido.setText("");
         this.txtCodigo.setText("");
