@@ -473,8 +473,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             ventanaCrearCompositor = new VentanaCrearCompositor(controladorCompositor);
             desktopPane.add(ventanaCrearCompositor);
         }
-        ventanaCrearCompositor.cambiarIdioma(localizacion);
+        
         ventanaCrearCompositor.setVisible(true);          // TODO add your handling code here:
+        ventanaCrearCompositor.cambiarIdioma(localizacion);
     }//GEN-LAST:event_jMenuItemCrearCompositorActionPerformed
 
     private void jMenuItemBuscarCompositorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBuscarCompositorActionPerformed
