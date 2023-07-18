@@ -8,9 +8,13 @@ import ec.edu.ups.java.practica02mvc.idao.ICantanteDAO;
 import ec.edu.ups.java.practica02mvc.modelo.Cancion;
 import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import ec.edu.ups.java.practica02mvc.modelo.Disco;
+import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,6 +49,26 @@ public class CantanteDAO implements ICantanteDAO {
             int numeroSencillos = cantante.getNumeroDeSencillos();
             double salario = cantante.getSalario();
             List<Disco> discografia = cantante.getDiscografia();
+            if (nombre.length() < 25) {
+                for (int i = nombre.length(); i < 25; i++) {
+                    nombre = nombre + " ";
+                }
+            }
+            //Rellena espacios hasta 25 caracteres en el apellido
+            if (apellido.length() < 25) {
+                for (int i = apellido.length(); i < 25; i++) {
+                    apellido = apellido + " ";
+                }
+            }
+            for (int i = 0; i < 10; i++) {
+                discografia.get(i);
+
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CantanteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
     }
 
