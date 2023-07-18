@@ -148,23 +148,23 @@ public class Compositor extends Persona {
      */
     @Override
     public double calcularSalario() {
-        double salario = super.getSalario();
+        double salarioNuveo = super.getSalario();
         // Incrementa el salario en 300 si el cantante tiene más de 5 numero de composiciones
         if (this.numeroDeComposiciones > 5) {
-            salario += 300.0;
+            salarioNuveo += 300.0;
         }
         // Incrementa el salario en 0.10% si el cantante tiene más de 1 y menos de 3 canciones
         if (this.cancionesTop100Billboard.size() >= 1 && this.cancionesTop100Billboard.size() <= 3) {
-            salario *= 1.10;
+            salarioNuveo *= 1.10;
             // Incrementa el salario en 0.20% si el cantante tiene más de 4 y menos de 6 canciones    
         } else if (this.cancionesTop100Billboard.size() >= 4 && this.cancionesTop100Billboard.size() <= 6) {
-            salario *= 1.20;
+            salarioNuveo *= 1.20;
             // Incrementa el salario en 0.20% si el cantante tiene más de 6
         } else if (this.cancionesTop100Billboard.size() > 6) {
-            salario *= 1.20;
+            salarioNuveo *= 1.20;
         }
         //Retorna el salario
-        return salario;
+        return salarioNuveo;
     }
 
     /*

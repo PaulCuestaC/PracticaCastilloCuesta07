@@ -14,14 +14,12 @@ import java.util.List;
  * @author ESTUDIANTE
  */
 public class CompositorDAO implements ICompositorDAO {
-
-    private String ruta;
+ private String ruta;
     private List<Compositor> listaCompositor;
 
     public CompositorDAO() {
         listaCompositor = new ArrayList<>();
         ruta = "C:\\Users\\paulc\\OneDrive\\Desktop\\Practica07-main\\src\\main\\java\\ec\\edu\\ups\\java\\practica02mvc\\archivos\\cantantes.dat";
-
     }
 
     @Override
@@ -60,6 +58,8 @@ public class CompositorDAO implements ICompositorDAO {
             }
         }
     }
+
+    
 
     @Override
     public List<Compositor> list() {

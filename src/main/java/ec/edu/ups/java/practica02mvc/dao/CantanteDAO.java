@@ -16,8 +16,7 @@ import java.util.List;
  * @author ESTUDIANTE
  */
 public class CantanteDAO implements ICantanteDAO {
-
-    String ruta;
+ String ruta;
     private List<Cantante> listaCantantes;
 
     public CantanteDAO() {
@@ -65,8 +64,8 @@ public class CantanteDAO implements ICantanteDAO {
 
     public void agregarCancion(Disco disco) {
 
-        Cantante cantante = new Cantante();
-
+        Cantante cantante= new Cantante();
+     
         cantante.AgregarDisco(disco);
     }
 

@@ -185,29 +185,29 @@ Calcula el salario del cantante teniendo en cuenta diferentes factores.
      */
     @Override
     public double calcularSalario() {
-        double salario = super.getSalario(); // Obtiene el salario base de la clase padre
+        double salarioNuevo = super.getSalario(); // Obtiene el salario base de la clase padre
 
 // Incrementa el salario en 1000 si el cantante tiene más de 10 sencillos y más de 3 giras
         if (this.numeroDeSencillos > 10 && this.numeroDeGiras > 3) {
-            salario += 1000.0;
+            salarioNuevo += 1000.0;
         }
 
 // Incrementa el salario en un 5% si el cantante tiene entre 1 y 10 sencillos
         if (this.numeroDeSencillos >= 1 && this.numeroDeSencillos <= 10) {
-            salario *= 1.05;
+            salarioNuevo *= 1.05;
         }
 
 // Incrementa el salario en un 3% si el cantante tiene entre 1 y 3 giras
         if (this.numeroDeGiras >= 1 && this.numeroDeGiras <= 3) {
-            salario *= 1.03;
+            salarioNuevo *= 1.03;
         }
 
 // Incrementa el salario en 2000 si el cantante tiene al menos 5 discografías
         if (this.discografia.size() >= 5) {
-            salario += 2000.0;
+            salarioNuevo += 2000.0;
         }
 
-        return salario; // Devuelve el salario final calculado
+        return salarioNuevo; // Devuelve el salario final calculado
     }
 
     /*

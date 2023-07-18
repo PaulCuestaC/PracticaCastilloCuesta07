@@ -10,18 +10,29 @@ public class Disco {
     private int codigo; // atributo numerico que guarda el codigo del disco
     private String nombre; // atributo String que guarda el nombre del disco
     private int anioDeLanzamiento; // atributo numerico que guarda el ano de lanzamiento
-
+ 
     /*
      * Constructor vacío de la clase Cancion
      */
     public Disco() {
     }
 
+    /*
+ * Constructor con parámetros de la clase Disco.
+ * @param codigo: int, código del disco
+ * @param nombre: String, nombre del disco
+ * @param anioDeLanzamiento: int, año de lanzamiento del disco
+     */
     public Disco(int codigo, String nombre, int anioDeLanzamiento) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.anioDeLanzamiento = anioDeLanzamiento;
     }
+    
+
+    
+   
+    
 
     //Getters and Setters de la clase Disco
     public int getCodigo() {
@@ -50,7 +61,7 @@ public class Disco {
 
     /*
     Metodo toString que devuelve de forma de string los atributos
-     */
+    */
     @Override
     public String toString() {
         return "Disco{" + "codigo=" + codigo + ", nombre=" + nombre + ", anioDeLanzamiento=" + anioDeLanzamiento + '}';
@@ -67,7 +78,7 @@ public class Disco {
         return hash;
     }
 
-    /*
+     /*
     Compara si la instancia actual de la clase Disco es igual a otro objeto.
     @param obj objeto a comparar con la instancia actual de la clase Disco
     @return true si la instancia actual de la clase Disco es igual al objeto pasado como parametro,
