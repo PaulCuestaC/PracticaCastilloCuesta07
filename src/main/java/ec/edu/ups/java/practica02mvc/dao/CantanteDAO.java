@@ -9,8 +9,10 @@ import ec.edu.ups.java.practica02mvc.modelo.Cancion;
 import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import ec.edu.ups.java.practica02mvc.modelo.Disco;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +41,7 @@ public class CantanteDAO implements ICantanteDAO {
             //Escribir en archivo binario
             String nombre = cantante.getNombre();
             String apellido = cantante.getApellido();
-            String codigo = cantante.getCodigo();
+            int codigo = Integer.parseInt(cantante.getCodigo());
             String numeroMusical = cantante.getGeneroMusical();
             String nacionalidad = cantante.getNacionalidad();
             String nombreArtistico = cantante.getNombreArtistico();
@@ -60,11 +62,29 @@ public class CantanteDAO implements ICantanteDAO {
                     apellido = apellido + " ";
                 }
             }
+
+            archivo.writeInt(codigo);
+            archivo.writeUTF(nombre);
+            archivo.writeUTF(apellido);
+            archivo.writeInt(edad);
+            archivo.writeUTF(numeroMusical);
+            archivo.writeUTF(nacionalidad);
+            archivo.writeUTF(nombreArtistico);
+            archivo.writeInt(numeroConciertos);
+            archivo.writeInt(numeroGiras);
+            archivo.writeInt(numeroSencillos);
+            archivo.writeDouble(salario);
             for (int i = 0; i < 10; i++) {
-                discografia.get(i);
+                Disco disco = discografia.get(i);
+                archivo.writeInt(disco.getCodigo());
+                archivo.writeUTF((disco.getNombre()));
+                archivo.writeInt(disco.getAnioDeLanzamiento());
 
             }
 
+            archivo.close();
+  
+           
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CantanteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -73,14 +93,46 @@ public class CantanteDAO implements ICantanteDAO {
     }
 
     @Override
-    public Cantante read(String cod) {
+    public Cantante read(String cod) throws Exception{
+        int cod2 = Integer.parseInt(cod);
+        cod2=cod2-1;
+           cod2=cod2*152;
+           
+           try{
+        RandomAccessFile archivo=new RandomAccessFile(ruta,"rw");
+        archivo.seek(cod2);
+        Cantante p=new Cantante();
+        //Leer archivo binario
+        archivo.seek(cod2);
+         if(archivo.readUTF()!=null){
+        archivo.seek(cod2);     
+        p.setNombre(archivo.readUTF().trim());
+        archivo.seek(cod2+31);
+        p.setApellido(archivo.readUTF().trim());
+        archivo.seek(cod2+58);
 
-        for (Cantante cantante : listaCantantes) {
-            if (cantante.getCodigo().equals(cod)) {
-                return cantante;
-            }
+        p.setEdad(archivo.readInt());
+        archivo.seek(cod2+120);
+        String fecha=archivo.readUTF();
+        Date fecha1=formatter.parse(fecha);
+        p.setFechaNacimiento(fecha1);
+        archivo.seek(pos+132);
+        p.setNumeroTelefono(archivo.readUTF());
+        archivo.seek(pos+144);
+        p.setSalario(archivo.readDouble());
+        archivo.close();
+        return p;
+         }else{
+            JOptionPane.showMessageDialog (null,"La persona No existe");
+                 
         }
-        return null;
+        }catch(FileNotFoundException ex){
+            System.out.println("Archivo no encontrado");
+        } catch (IOException ex) {
+            System.out.println("Error de escritura");;
+        }
+        return null;   
+       
     }
 
     @Override
