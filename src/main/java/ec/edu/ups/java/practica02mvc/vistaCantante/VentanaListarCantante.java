@@ -7,6 +7,8 @@ package ec.edu.ups.java.practica02mvc.vistaCantante;
 import ec.edu.ups.java.practica02mvc.controlador.ControladorCantante;
 import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,10 +27,10 @@ public class VentanaListarCantante extends javax.swing.JInternalFrame {
         this.controladorCantante = controladorCantante;
     }
 
-    private void cargarDatosTabla() {
+    private void cargarDatosTabla() throws Exception {
         DefaultTableModel modelo = (DefaultTableModel) this.tablaCantante.getModel();
         modelo.setNumRows(0);
-        List<Cantante> listaC = controladorCantante.list();
+        List<Cantante> listaC = (List<Cantante>) controladorCantante.list();
         for (Cantante cantante : listaC) {
             String nombre = cantante.getNombre();
             String nombreA = cantante.getNombreArtistico();
@@ -115,7 +117,11 @@ public class VentanaListarCantante extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        this.cargarDatosTabla();
+        try {
+            this.cargarDatosTabla();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaListarCantante.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_formInternalFrameActivated
 
 

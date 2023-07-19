@@ -10,6 +10,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Disco;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -202,7 +204,10 @@ public class VentanaActualizarDisco extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         int cod = Integer.parseInt(txtCodigo.getText());
 
-        List<Cantante> lista = controladorCantante.list();
+        List<Cantante> lista;
+        try {
+            lista = (List<Cantante>) controladorCantante.list();
+     
         for (Cantante cantante : lista) {
             if (cantante.readDisco(cod) == null) {
 
@@ -214,12 +219,18 @@ public class VentanaActualizarDisco extends javax.swing.JInternalFrame {
             }
 
         }
+           } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarDisco.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         int cod = Integer.parseInt(txtCodigo.getText());
 
-        List<Cantante> lista = controladorCantante.list();
+        List<Cantante> lista;
+        try {
+            lista = (List<Cantante>) controladorCantante.list();
+        
         for (Cantante cantante : lista) {
             if (cantante.readDisco(cod) == null) {
 
@@ -230,8 +241,11 @@ public class VentanaActualizarDisco extends javax.swing.JInternalFrame {
                 String nombre = txtAñoDeLanzamiento.getText();
                 disco.setNombre(nombre);
                 cantante.updateDisco(disco);
-                controladorCantante.update(cantante);
+                controladorCantante.update(cantante,Integer.parseInt(cantante.getCodigo()));
             }
+        }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarDisco.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
     public void limpiarCampos() {

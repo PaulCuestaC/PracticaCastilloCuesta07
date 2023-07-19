@@ -8,6 +8,8 @@ import ec.edu.ups.java.practica02mvc.controlador.ControladorCompositor;
 import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -160,8 +162,11 @@ public class VentanaEliminarCompositor extends javax.swing.JInternalFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         int confirm = JOptionPane.showConfirmDialog(this, "¿Esta seguro?");
+         try {
         if (confirm == 0) {
-            Compositor compositor = controladorCompositor.buscar(txtCodigo.getText());
+           
+                Compositor compositor = controladorCompositor.buscar(txtCodigo.getText());
+            
             controladorCompositor.delete(evt);
            
             
@@ -175,6 +180,9 @@ public class VentanaEliminarCompositor extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, mensajeCompositorNoFueEliminadoCorrectamente);
 
         }
+        } catch (Exception ex) {
+                Logger.getLogger(VentanaEliminarCompositor.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
 
     }//GEN-LAST:event_btnAceptarActionPerformed

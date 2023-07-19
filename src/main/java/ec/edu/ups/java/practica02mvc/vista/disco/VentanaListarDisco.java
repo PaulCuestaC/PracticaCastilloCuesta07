@@ -25,10 +25,10 @@ private ControladorCantante controladorCantante;
         initComponents();
         this.controladorCantante = controladorCantante;
     }
-    private void cargarDatosTabla() {
+    private void cargarDatosTabla() throws Exception {
         DefaultTableModel modelo = (DefaultTableModel) this.tblDsico.getModel();
         modelo.setNumRows(0);
-        List<Cantante> listaC = controladorCantante.list();
+        List<Cantante> listaC = (List<Cantante>) controladorCantante.list();
         for (Cantante cantante : listaC) {
             List<Disco> Canciones = cantante.listar();
             String nombreA = cantante.getNombre();

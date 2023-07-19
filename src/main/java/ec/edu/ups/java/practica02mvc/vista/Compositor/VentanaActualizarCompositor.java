@@ -8,6 +8,8 @@ import ec.edu.ups.java.practica02mvc.controlador.ControladorCompositor;
 import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -256,19 +258,27 @@ public class VentanaActualizarCompositor extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String cod = txtCodigo.getText();
-        Compositor compositor = (controladorCompositor.buscar(cod));
+        Compositor compositor;
+        try {
+            compositor = (controladorCompositor.buscar(cod));
+      
         txtApellido.setText(compositor.getApellido());
         txtEdad.setText(String.valueOf(compositor.getEdad()));
         txtNacionalidad.setText(compositor.getNacionalidad());
         txtNombre.setText(compositor.getNombre());
         txtNumeroComposiciones.setText(String.valueOf(compositor.getNumeroDeComposiciones()));
         txtSalario.setText(String.valueOf(compositor.getSalario()));
-        
+          } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarCompositor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAecptarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAecptarCActionPerformed
         String cod = txtCodigo.getText();
-        Compositor compositor = (controladorCompositor.buscar(cod));
+        Compositor compositor;
+        try {
+            compositor = (controladorCompositor.buscar(cod));
+      
         compositor.setApellido(txtApellido.getText());
         compositor.setEdad(Integer.parseInt(txtEdad.getText()));
         compositor.setNombre(txtNombre.getText());
@@ -276,10 +286,12 @@ public class VentanaActualizarCompositor extends javax.swing.JInternalFrame {
         compositor.setNumeroDeComposiciones(Integer.parseInt(txtNumeroComposiciones.getText()));
         compositor.setSalario(Integer.parseInt(txtSalario.getText()));
         
-        controladorCompositor.update(compositor);
+        controladorCompositor.update(compositor,Integer.parseInt(compositor.getCodigo()));
         String mensajeCompositorActualizado = mensajes.getString("mensaje.compositorActualizado");
         JOptionPane.showMessageDialog(this, mensajeCompositorActualizado);
-        
+          } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarCompositor.class.getName()).log(Level.SEVERE, null, ex);
+        }
         limpiarCampos();
                 
     }//GEN-LAST:event_btnAecptarCActionPerformed

@@ -8,6 +8,8 @@ import ec.edu.ups.java.practica02mvc.controlador.ControladorCantante;
 import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -314,7 +316,10 @@ public class VentanaEliminarCantante extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String codigo = txtCodigo.getText();
-        Cantante cantante = controladorCantante.buscar(codigo);
+        Cantante cantante;
+        try {
+            cantante = controladorCantante.buscar(codigo);
+        
         txtApellido.setText(cantante.getApellido());
         txtEdad.setText(String.valueOf(cantante.getEdad()));
         txtGeneroMusical.setText(cantante.getGeneroMusical());
@@ -324,6 +329,9 @@ public class VentanaEliminarCantante extends javax.swing.JInternalFrame {
         txtNumeroDeGiras.setText(String.valueOf(cantante.getNumeroDeGiras()));
         txtNumeroDeSencillos.setText(String.valueOf(cantante.getNumeroDeSencillos()));
         txtSalario.setText(String.valueOf(cantante.getSalario()));
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaEliminarCantante.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

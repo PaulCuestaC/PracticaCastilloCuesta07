@@ -9,6 +9,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import ec.edu.ups.java.practica02mvc.modelo.Disco;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -155,15 +157,23 @@ public class VentanaCrearDisco extends javax.swing.JInternalFrame {
 
         String codigation = txxtCodigoCantante1.getText();
 
-        Cantante cantante = controladorCantante.buscar(codigation);
+        Cantante cantante;
+        try {
+            cantante = controladorCantante.buscar(codigation);
+        
         txtNombreCantante.setText(cantante.getNombre());
-
+} catch (Exception ex) {
+            Logger.getLogger(VentanaCrearDisco.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         String codigation = txxtCodigoCantante1.getText();
 
-        Cantante cantante = controladorCantante.buscar(codigation);
+        Cantante cantante;
+        try {
+            cantante = controladorCantante.buscar(codigation);
+        
         String nombre = txtNombre.getText();
         int codigo = Integer.parseInt(txtNombre.getText());
         int fecha = Integer.parseInt(txtAñoDeLanzamiento.getText());
@@ -172,11 +182,13 @@ public class VentanaCrearDisco extends javax.swing.JInternalFrame {
         disco.setCodigo(codigo);
         disco.setAnioDeLanzamiento(fecha);
         cantante.AgregarDisco(disco);
-        controladorCantante.update(cantante);
+        controladorCantante.update(cantante,Integer.parseInt(cantante.getCodigo()));
         
         String mensajeCancionAñadida = mensajes.getString("mensaje.cancionAñadida");
         JOptionPane.showMessageDialog(this, mensajeCancionAñadida);
-               
+               } catch (Exception ex) {
+            Logger.getLogger(VentanaCrearDisco.class.getName()).log(Level.SEVERE, null, ex);
+        }
         limpiarCampos();
     }//GEN-LAST:event_btnAceptarActionPerformed
 public void limpiarCampos(){

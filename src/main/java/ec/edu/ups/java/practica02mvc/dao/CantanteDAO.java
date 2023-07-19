@@ -27,11 +27,11 @@ import javax.swing.JOptionPane;
 public class CantanteDAO implements ICantanteDAO {
 
        private String ruta;
-    private List<Cantante> listaCantantes;
+
     private Set<Cantante> lista;
 
     public CantanteDAO() {
-        listaCantantes = new ArrayList<>();
+       
         ruta = "C:\\Users\\paulc\\OneDrive\\Desktop\\Practica07-main\\src\\main\\java\\ec\\edu\\ups\\java\\practica02mvc\\compositores.dat";
     }
 
@@ -108,7 +108,7 @@ public class CantanteDAO implements ICantanteDAO {
                     }
                 }
                 archivo.writeInt(disco.getCodigo());
-                archivo.writeUTF((disco.getNombre()));
+                archivo.writeUTF(discoN);
                 archivo.writeInt(disco.getAnioDeLanzamiento());
 
             }
@@ -157,7 +157,7 @@ public class CantanteDAO implements ICantanteDAO {
                 archivo.seek(cod2 + 155);
                 p.setSalario(archivo.readDouble());
                 archivo.seek(cod2 + 163);
-                List<Disco> discografiando;
+                List<Disco> discografiando = null;
 
                 for (int j = 0; j < 10; j++) {
                     archivo.seek(cod2 + (35 * j) + 163);
@@ -167,9 +167,9 @@ public class CantanteDAO implements ICantanteDAO {
                     disco.setNombre(archivo.readUTF());
                     archivo.seek(cod2 + (35 * j) + 194);
                     disco.setAnioDeLanzamiento(archivo.readInt());
-
+                    p.AgregarDisco(disco);
                 }
-
+                
                 archivo.close();
                 return p;
             } else {

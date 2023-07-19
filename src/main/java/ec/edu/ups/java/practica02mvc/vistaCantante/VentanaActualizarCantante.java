@@ -8,6 +8,8 @@ import ec.edu.ups.java.practica02mvc.controlador.ControladorCantante;
 import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,29 +29,29 @@ public class VentanaActualizarCantante extends javax.swing.JInternalFrame {
         this.controladorCantante = controladorCantante;
 
     }
-    public void cambiarIdioma(Locale localizacion){
+
+    public void cambiarIdioma(Locale localizacion) {
         mensajes = ResourceBundle.getBundle("mensajes.mensaje", localizacion);
         jLabel13.setText(mensajes.getString("txtCodigo"));
         jLabel9.setText(mensajes.getString("txtNombre"));
-        jLabel10.setText(mensajes.getString("txtApellido"));        
+        jLabel10.setText(mensajes.getString("txtApellido"));
         jLabel6.setText(mensajes.getString("txtEdad"));
         jLabel11.setText(mensajes.getString("txtNacionalidad"));
         jLabel12.setText(mensajes.getString("txtSalario"));
-        
+
         jLabel2.setText(mensajes.getString("txtGeneroMusical"));
         jLabel5.setText(mensajes.getString("txtNumeroDeSencillos"));
         jLabel3.setText(mensajes.getString("txtNumeroDeConciertos"));
         jLabel4.setText(mensajes.getString("txtNumeroDeGiras"));
-        
+
         jLabelCantante3.setText(mensajes.getString("jLabelCantante3"));
-        
+
         btnAceptar.setText(mensajes.getString("btnAceptar"));
         btnCancelar.setText(mensajes.getString("btnCancelar"));
         btnBuscar.setText(mensajes.getString("btnBuscar"));
 
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -282,17 +284,22 @@ public class VentanaActualizarCantante extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String cod = txtCodigo.getText();
-        Cantante cantante = controladorCantante.buscar(cod);
-        txtApellido.setText(cantante.getApellido());
-        txtEdad.setText(String.valueOf(cantante.getEdad()));
-        txtGeneroMusical.setText(cantante.getGeneroMusical());
-        txtNacionalidad.setText(cantante.getNacionalidad());
-        txtNombre.setText(cantante.getNombre());
-        txtNumeroDeConciertos.setText(String.valueOf(cantante.getNumeroDeConciertos()));
-        txtNumeroDeGiras.setText(String.valueOf(cantante.getNumeroDeGiras()));
-        txtNumeroDeSencillos.setText(String.valueOf(cantante.getNumeroDeSencillos()));
-        txtSalario.setText(String.valueOf(cantante.getSalario()));
+        Cantante cantante;
+        try {
+            cantante = controladorCantante.buscar(cod);
 
+            txtApellido.setText(cantante.getApellido());
+            txtEdad.setText(String.valueOf(cantante.getEdad()));
+            txtGeneroMusical.setText(cantante.getGeneroMusical());
+            txtNacionalidad.setText(cantante.getNacionalidad());
+            txtNombre.setText(cantante.getNombre());
+            txtNumeroDeConciertos.setText(String.valueOf(cantante.getNumeroDeConciertos()));
+            txtNumeroDeGiras.setText(String.valueOf(cantante.getNumeroDeGiras()));
+            txtNumeroDeSencillos.setText(String.valueOf(cantante.getNumeroDeSencillos()));
+            txtSalario.setText(String.valueOf(cantante.getSalario()));
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarCantante.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
@@ -306,22 +313,27 @@ public class VentanaActualizarCantante extends javax.swing.JInternalFrame {
         int numSe = Integer.parseInt(txtNumeroDeSencillos.getText());
         double salario = Integer.parseInt(txtSalario.getText());
         String cod = txtCodigo.getText();
-        Cantante cantante = controladorCantante.buscar(cod);
-        cantante.setApellido(apellido);
-        cantante.setEdad(edad);
-        cantante.setNacionalidad(nacionalidad);
-        cantante.setNombre(nombre);
-        cantante.setNumeroDeConciertos(numCo);
-        cantante.setNumeroDeGiras(numGi);
-        cantante.setNumeroDeSencillos(numSe);
-        cantante.setSalario(salario);
+        Cantante cantante;
+        try {
+            cantante = controladorCantante.buscar(cod);
 
-        controladorCantante.update(cantante);
-        
-        String mensajeCantanteActualizado = mensajes.getString("mensaje.cantanteActualizado");
-        JOptionPane.showMessageDialog(this, mensajeCantanteActualizado);
-               
-       
+            cantante.setApellido(apellido);
+            cantante.setEdad(edad);
+            cantante.setNacionalidad(nacionalidad);
+            cantante.setNombre(nombre);
+            cantante.setNumeroDeConciertos(numCo);
+            cantante.setNumeroDeGiras(numGi);
+            cantante.setNumeroDeSencillos(numSe);
+            cantante.setSalario(salario);
+
+            controladorCantante.update(cantante, Integer.parseInt(cantante.getCodigo()));
+
+            String mensajeCantanteActualizado = mensajes.getString("mensaje.cantanteActualizado");
+            JOptionPane.showMessageDialog(this, mensajeCantanteActualizado);
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarCantante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
 

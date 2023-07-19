@@ -8,6 +8,8 @@ import ec.edu.ups.java.practica02mvc.controlador.ControladorCompositor;
 import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -269,13 +271,19 @@ public class VentanaBuscarCompositor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        Compositor compositor =controladorCompositor.buscar(txtCodigo.getText());
+        Compositor compositor;
+        try {
+            compositor = controladorCompositor.buscar(txtCodigo.getText());
+        
         txtApellido.setText(compositor.getApellido());
         txtEdad.setText(String.valueOf(compositor.getEdad()));
         txtNacionalidad.setText(compositor.getNacionalidad());
         txtNombre.setText(compositor.getNombre());
         txtNumeroComposiciones.setText(String.valueOf(compositor.getNumeroDeComposiciones()));
         txtSalario.setText(String.valueOf(compositor.getSalario()));
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaBuscarCompositor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 public void limpiarCampos(){
     txtApellido.setText("");

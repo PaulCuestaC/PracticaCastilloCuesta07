@@ -10,6 +10,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -279,7 +281,10 @@ public class VentanaEliminarCancion extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         int cod = Integer.parseInt(txtCodigo.getText());
 
-        List<Compositor> lista = controladorCompositor.list();
+        List<Compositor> lista;
+        try {
+            lista = controladorCompositor.list();
+        
         for (Compositor compositor : lista) {
             if (compositor.readCancion(cod) == null) {
 
@@ -294,12 +299,18 @@ public class VentanaEliminarCancion extends javax.swing.JInternalFrame {
             }
 
         }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaEliminarCancion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         int cod = Integer.parseInt(txtCodigo.getText());
 
-        List<Compositor> lista = controladorCompositor.list();
+        List<Compositor> lista;
+        try {
+            lista = controladorCompositor.list();
+        
         for (Compositor compositor : lista) {
             if (compositor.readCancion(cod) == null) {
 
@@ -308,7 +319,7 @@ public class VentanaEliminarCancion extends javax.swing.JInternalFrame {
                 int j = JOptionPane.showConfirmDialog(this, "¿Estas seguro de borrar esta cancion?");
                 if (j == 0) {
                     compositor.deleteCancion(cod);
-                    controladorCompositor.update(compositor);
+                    controladorCompositor.update(compositor, Integer.parseInt(compositor.getCodigo()));
                     
                     String mensajeEliminadoCorrectamente = mensajes.getString("mensaje.eliminadoCorrectamente");
                     JOptionPane.showMessageDialog(this, mensajeEliminadoCorrectamente);
@@ -323,7 +334,9 @@ public class VentanaEliminarCancion extends javax.swing.JInternalFrame {
 
         }
 
-
+} catch (Exception ex) {
+            Logger.getLogger(VentanaEliminarCancion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

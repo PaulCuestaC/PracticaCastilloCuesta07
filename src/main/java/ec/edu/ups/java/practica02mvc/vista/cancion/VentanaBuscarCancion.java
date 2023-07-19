@@ -10,6 +10,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -279,7 +281,10 @@ public class VentanaBuscarCancion extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
       int cod = Integer.parseInt(txtCodigo.getText());
       
-      List<Compositor> lista = controladorCompositor.list();
+      List<Compositor> lista;
+        try {
+            lista = controladorCompositor.list();
+      
         for (Compositor compositor: lista) {
             if(compositor.readCancion(cod)==null){
                 
@@ -294,6 +299,9 @@ public class VentanaBuscarCancion extends javax.swing.JInternalFrame {
                 
             }
             
+        }
+          } catch (Exception ex) {
+            Logger.getLogger(VentanaBuscarCancion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
     public void limpiarCampos(){
