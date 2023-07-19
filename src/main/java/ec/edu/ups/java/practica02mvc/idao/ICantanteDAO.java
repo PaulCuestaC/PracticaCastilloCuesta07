@@ -6,6 +6,7 @@ package ec.edu.ups.java.practica02mvc.idao;
 
 import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -15,11 +16,11 @@ public interface ICantanteDAO {
 
     public abstract void create(Cantante cantante); //C
 
-    public abstract Cantante read(String cod); //R
+    public abstract Cantante read(String cod)throws Exception; //R
 
-    public abstract void update(Cantante cantante); //U
+    public abstract void update(Cantante cantante, int pos); //U
 
     public abstract void delete(String cod); //D
 
-    public abstract List<Cantante> list();
+    public abstract Set<Cantante> getLista() throws Exception ;
 }
