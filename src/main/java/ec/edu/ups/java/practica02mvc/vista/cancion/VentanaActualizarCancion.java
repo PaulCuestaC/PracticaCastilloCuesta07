@@ -34,8 +34,9 @@ public class VentanaActualizarCancion extends javax.swing.JInternalFrame {
         jLabel2.setText(mensajes.getString("txtLetra"));        
         jLabel8.setText(mensajes.getString("txtTiempoEnMinutos1"));
         jLabelCancion3.setText(mensajes.getString("jLabelCancion3"));
-        btnAceptar.setText(mensajes.getString("Aceptar"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
+        btnAceptar.setText(mensajes.getString("btnAceptar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
+        btnBuscar.setText(mensajes.getString("btnBuscar"));
 
         
     }

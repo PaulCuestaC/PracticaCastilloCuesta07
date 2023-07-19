@@ -38,9 +38,10 @@ public class VentanaCrearCancion extends javax.swing.JInternalFrame {
         jLabel7.setText(mensajes.getString("txxtCodigoCantante1"));
         jLabel3.setText(mensajes.getString("txtNombreCantante"));
         jLabel1.setText(mensajes.getString("jLabel1"));
-        btnAceptar.setText(mensajes.getString("Aceptar"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
-
+        btnAceptar.setText(mensajes.getString("btnAceptar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
+        btnBuscar.setText(mensajes.getString("btnBuscar"));
+        
         
     }
     /**

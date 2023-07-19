@@ -36,9 +36,10 @@ public class VentanaEliminarDisco extends javax.swing.JInternalFrame {
         jLabel5.setText(mensajes.getString("txtNombre"));
         jLabel2.setText(mensajes.getString("txtAñoDeLanzamiento"));
         jLabelDisco4.setText(mensajes.getString("jLabelDisco4"));
-        btnAceptar.setText(mensajes.getString("Aceptar"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
-
+        btnAceptar.setText(mensajes.getString("btnAceptar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
+        btnBuscar.setText(mensajes.getString("btnBuscar"));
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -226,7 +227,7 @@ public class VentanaEliminarDisco extends javax.swing.JInternalFrame {
                 } else {
 
                     String mensajeNoSeEliminoElDisco = mensajes.getString("mensaje.noseEliminoElDisco");
-                    JOptionPane.showMessageDialog(this, "mensajeNoSeEliminoElDisco");
+                    JOptionPane.showMessageDialog(this, mensajeNoSeEliminoElDisco);
                 }
 
             }

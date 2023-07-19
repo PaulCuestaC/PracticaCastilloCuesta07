@@ -43,8 +43,9 @@ public class VentanaEliminarCantante extends javax.swing.JInternalFrame {
         
         jLabelCantante4.setText(mensajes.getString("jLabelCantante4"));
         
-        btnAceptar.setText(mensajes.getString("Aceptar"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
+        btnAceptar.setText(mensajes.getString("btnAceptar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
+        btnBuscar.setText(mensajes.getString("btnBuscar"));
 
 
     }

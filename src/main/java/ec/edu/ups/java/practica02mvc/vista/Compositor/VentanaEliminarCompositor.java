@@ -37,8 +37,8 @@ public class VentanaEliminarCompositor extends javax.swing.JInternalFrame {
         jLabel4.setText(mensajes.getString("txtSalario"));
         jLabel1.setText(mensajes.getString("txtNumCom"));
         jLabelCompositor4.setText(mensajes.getString("jLabelCompositor4"));
-        btnAceptar.setText(mensajes.getString("Aceptar"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
+        btnAceptar.setText(mensajes.getString("btnAceptar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
 
    
     }

@@ -41,7 +41,8 @@ public class VentanaBuscarCantante extends javax.swing.JInternalFrame {
         jLabel4.setText(mensajes.getString("txtNumeroDeGiras"));
         
         jLabelCantante2.setText(mensajes.getString("jLabelCantante2"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
+        btnBuscar.setText(mensajes.getString("btnBuscar"));
 
     }
         /**

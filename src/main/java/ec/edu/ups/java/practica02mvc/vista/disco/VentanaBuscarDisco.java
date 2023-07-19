@@ -34,7 +34,8 @@ public class VentanaBuscarDisco extends javax.swing.JInternalFrame {
         jLabel5.setText(mensajes.getString("txtNombre"));
         jLabel2.setText(mensajes.getString("txtAñoDeLanzamiento"));
         jLabelDisco2.setText(mensajes.getString("jLabelDisco2"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
+        btnBuscar.setText(mensajes.getString("btnBuscar"));
 
     }
         /**

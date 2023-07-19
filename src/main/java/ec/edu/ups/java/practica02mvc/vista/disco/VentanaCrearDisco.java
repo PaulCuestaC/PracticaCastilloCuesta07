@@ -34,8 +34,9 @@ public class VentanaCrearDisco extends javax.swing.JInternalFrame {
         jLabel7.setText(mensajes.getString("txxtCodigoCantante1"));
         jLabel3.setText(mensajes.getString("txtNombreCantante"));
         jLabel6.setText(mensajes.getString("jLabel6"));
-        btnAceptar.setText(mensajes.getString("Aceptar"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
+        btnAceptar.setText(mensajes.getString("btnAceptar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
+        btnBuscar.setText(mensajes.getString("btnBuscar"));
 
     }
 
@@ -59,7 +60,7 @@ public class VentanaCrearDisco extends javax.swing.JInternalFrame {
         txtCodigo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnAceptar1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         txtNombreCantante = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txxtCodigoCantante1 = new javax.swing.JTextField();
@@ -114,13 +115,13 @@ public class VentanaCrearDisco extends javax.swing.JInternalFrame {
         jLabel3.setText("Nombre: ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 100, 41));
 
-        btnAceptar1.setText("Buscar");
-        btnAceptar1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptar1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAceptar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, -1, 34));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, -1, 34));
 
         txtNombreCantante.setEditable(false);
         jPanel1.add(txtNombreCantante, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 310, -1));
@@ -150,14 +151,14 @@ public class VentanaCrearDisco extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptar1ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
         String codigation = txxtCodigoCantante1.getText();
 
         Cantante cantante = controladorCantante.buscar(codigation);
         txtNombreCantante.setText(cantante.getNombre());
 
-    }//GEN-LAST:event_btnAceptar1ActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         String codigation = txxtCodigoCantante1.getText();
@@ -187,7 +188,7 @@ public void limpiarCampos(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnAceptar1;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

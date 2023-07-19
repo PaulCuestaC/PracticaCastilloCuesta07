@@ -43,8 +43,9 @@ public class VentanaActualizarCantante extends javax.swing.JInternalFrame {
         
         jLabelCantante3.setText(mensajes.getString("jLabelCantante3"));
         
-        btnAceptar.setText(mensajes.getString("Aceptar"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
+        btnAceptar.setText(mensajes.getString("btnAceptar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
+        btnBuscar.setText(mensajes.getString("btnBuscar"));
 
     }
     

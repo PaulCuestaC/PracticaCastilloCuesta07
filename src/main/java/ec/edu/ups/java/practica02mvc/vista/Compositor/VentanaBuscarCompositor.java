@@ -33,9 +33,10 @@ public class VentanaBuscarCompositor extends javax.swing.JInternalFrame {
         jLabel6.setText(mensajes.getString("txtSalario"));
         jLabel7.setText(mensajes.getString("txtNumCom"));
         jLabelCompositor2.setText(mensajes.getString("jLabelCompositor2"));
-        btnAceptar.setText(mensajes.getString("Aceptar"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
-
+        btnBuscar.setText(mensajes.getString("btnAceptar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
+        btnBuscar.setText(mensajes.getString("btnBuscar"));
+        
 
     }
 
@@ -50,7 +51,7 @@ public class VentanaBuscarCompositor extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnAceptar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtNumeroComposiciones = new javax.swing.JTextField();
@@ -76,10 +77,10 @@ public class VentanaBuscarCompositor extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setForeground(new java.awt.Color(153, 153, 255));
 
-        btnAceptar.setText("Buscar");
-        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -149,7 +150,7 @@ public class VentanaBuscarCompositor extends javax.swing.JInternalFrame {
                         .addGap(159, 159, 159)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
-                        .addComponent(btnAceptar))
+                        .addComponent(btnBuscar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,7 +204,7 @@ public class VentanaBuscarCompositor extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,7 +268,7 @@ public class VentanaBuscarCompositor extends javax.swing.JInternalFrame {
         limpiarCampos();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         Compositor compositor =controladorCompositor.buscar(txtCodigo.getText());
         txtApellido.setText(compositor.getApellido());
         txtEdad.setText(String.valueOf(compositor.getEdad()));
@@ -275,7 +276,7 @@ public class VentanaBuscarCompositor extends javax.swing.JInternalFrame {
         txtNombre.setText(compositor.getNombre());
         txtNumeroComposiciones.setText(String.valueOf(compositor.getNumeroDeComposiciones()));
         txtSalario.setText(String.valueOf(compositor.getSalario()));
-    }//GEN-LAST:event_btnAceptarActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 public void limpiarCampos(){
     txtApellido.setText("");
     txtCodigo.setText("");
@@ -290,7 +291,7 @@ public void limpiarCampos(){
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

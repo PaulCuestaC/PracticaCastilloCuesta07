@@ -34,8 +34,9 @@ public class VentanaActualizarDisco extends javax.swing.JInternalFrame {
         jLabel5.setText(mensajes.getString("txtNombre"));
         jLabel2.setText(mensajes.getString("txtAñoDeLanzamiento"));
         jLabelDisco3.setText(mensajes.getString("jLabelDisco3"));
-        btnAceptar.setText(mensajes.getString("Aceptar"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
+        btnAceptar.setText(mensajes.getString("btnAceptar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
+        btnBuscar.setText(mensajes.getString("btnBuscar"));
 
     }
 

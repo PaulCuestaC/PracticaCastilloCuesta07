@@ -43,8 +43,8 @@ public class VentanaCrearCantante extends javax.swing.JInternalFrame {
         
         jLabel8.setText(mensajes.getString("jLabel8"));
         
-        btnAceptar.setText(mensajes.getString("Aceptar"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
+        btnAceptar.setText(mensajes.getString("btnAceptar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
 
         
     }
@@ -310,7 +310,6 @@ public class VentanaCrearCantante extends javax.swing.JInternalFrame {
         String mensajeCantanteAñadido = mensajes.getString("mensaje.cantanteAñadido");
         JOptionPane.showMessageDialog(this, mensajeCantanteAñadido);
         
-        JOptionPane.showMessageDialog(this, "Cantante Añadido");
         limpiarCampos();
     }//GEN-LAST:event_btnAceptarActionPerformed
 

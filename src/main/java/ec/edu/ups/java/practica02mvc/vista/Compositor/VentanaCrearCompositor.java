@@ -35,10 +35,9 @@ public class VentanaCrearCompositor extends javax.swing.JInternalFrame {
         jLabel6.setText(mensajes.getString("txtSalario"));
         jLabel7.setText(mensajes.getString("txtNumCom"));
         jLabel11.setText(mensajes.getString("jLabel11"));
-        btnAceptar.setText(mensajes.getString("Aceptar"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
-        JOptionPane.showMessageDialog(this, "Compositor Añadido");
-
+        btnAceptar.setText(mensajes.getString("btnAceptar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -278,8 +277,11 @@ public class VentanaCrearCompositor extends javax.swing.JInternalFrame {
         compositor.setNacionalidad(nacionalidad);
         compositor.setNumeroDeComposiciones(numCom);
         controladorCompositor.crear(compositor);
-        JOptionPane.showMessageDialog(this, "Compositor Añadido");
-        limpiarCampos();
+        
+        String mensajeCompositorAñadido = mensajes.getString("mensaje.compositorAñadido"); 
+        JOptionPane.showMessageDialog(this, mensajeCompositorAñadido);
+        
+         limpiarCampos();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

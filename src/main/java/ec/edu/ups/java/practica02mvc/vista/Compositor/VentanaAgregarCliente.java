@@ -37,9 +37,11 @@ public class VentanaAgregarCliente extends javax.swing.JInternalFrame {
         jLabel7.setText(mensajes.getString("txtCodigoCliente"));
         jLabel9.setText(mensajes.getString("txtNombreCan"));
         jLabel12.setText(mensajes.getString("jLabel12"));
-        btnAceptar.setText(mensajes.getString("Aceptar"));
-        btnCancelar.setText(mensajes.getString("Cancelar"));
-
+        btnAceptar.setText(mensajes.getString("btnAceptar"));
+        btnCancelar.setText(mensajes.getString("btnCancelar"));
+        btnBuscarCliente.setText(mensajes.getString("btnBuscarCliente"));
+        btnBuscar.setText(mensajes.getString(" btnBuscar"));
+        
     }
             /**
      * This method is called from within the constructor to initialize the form.
@@ -62,7 +64,7 @@ public class VentanaAgregarCliente extends javax.swing.JInternalFrame {
         btnCancelar = new javax.swing.JButton();
         txtNombreCan = new javax.swing.JTextField();
         txtNombreCom = new javax.swing.JTextField();
-        btnBuscar1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -98,10 +100,10 @@ public class VentanaAgregarCliente extends javax.swing.JInternalFrame {
 
         btnCancelar.setText("Cancelar");
 
-        btnBuscar1.setText("Buscar");
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -126,7 +128,7 @@ public class VentanaAgregarCliente extends javax.swing.JInternalFrame {
                 .addGap(61, 61, 61)
                 .addComponent(txtCodigoCompositor, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(btnBuscar1))
+                .addComponent(btnBuscar))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,7 +163,7 @@ public class VentanaAgregarCliente extends javax.swing.JInternalFrame {
                         .addGap(8, 8, 8)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCodigoCompositor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscar1))))
+                            .addComponent(btnBuscar))))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,12 +206,12 @@ public class VentanaAgregarCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String cod = txtCodigoCompositor.getText();
         Compositor compositor = controladorCompositor.buscar(cod);
         txtNombreCom.setText(compositor.getNombre());
 
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         String cod = txtCodigoCliente.getText();
@@ -236,7 +238,7 @@ public class VentanaAgregarCliente extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel10;
