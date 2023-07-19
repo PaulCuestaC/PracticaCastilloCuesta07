@@ -93,44 +93,44 @@ public class CantanteDAO implements ICantanteDAO {
     }
 
     @Override
-    public Cantante read(String cod) throws Exception{
-        int cod2 = Integer.parseInt(cod);
-        cod2=cod2-1;
-           cod2=cod2*152;
-           
-           try{
-        RandomAccessFile archivo=new RandomAccessFile(ruta,"rw");
-        archivo.seek(cod2);
-        Cantante p=new Cantante();
-        //Leer archivo binario
-        archivo.seek(cod2);
-         if(archivo.readUTF()!=null){
-        archivo.seek(cod2);     
-        p.setNombre(archivo.readUTF().trim());
-        archivo.seek(cod2+31);
-        p.setApellido(archivo.readUTF().trim());
-        archivo.seek(cod2+58);
-
-        p.setEdad(archivo.readInt());
-        archivo.seek(cod2+120);
-        String fecha=archivo.readUTF();
-        Date fecha1=formatter.parse(fecha);
-        p.setFechaNacimiento(fecha1);
-        archivo.seek(pos+132);
-        p.setNumeroTelefono(archivo.readUTF());
-        archivo.seek(pos+144);
-        p.setSalario(archivo.readDouble());
-        archivo.close();
-        return p;
-         }else{
-            JOptionPane.showMessageDialog (null,"La persona No existe");
-                 
-        }
-        }catch(FileNotFoundException ex){
-            System.out.println("Archivo no encontrado");
-        } catch (IOException ex) {
-            System.out.println("Error de escritura");;
-        }
+    public Cantante read(String cod) {
+//        int cod2 = Integer.parseInt(cod);
+//        cod2=cod2-1;
+//           cod2=cod2*152;
+//           
+//           try{
+//        RandomAccessFile archivo=new RandomAccessFile(ruta,"rw");
+//        archivo.seek(cod2);
+//        Cantante p=new Cantante();
+//        //Leer archivo binario
+//        archivo.seek(cod2);
+//         if(archivo.readUTF()!=null){
+//        archivo.seek(cod2);     
+//        p.setNombre(archivo.readUTF().trim());
+//        archivo.seek(cod2+31);
+//        p.setApellido(archivo.readUTF().trim());
+//        archivo.seek(cod2+58);
+//
+//        p.setEdad(archivo.readInt());
+//        archivo.seek(cod2+120);
+//        String fecha=archivo.readUTF();
+//        Date fecha1=formatter.parse(fecha);
+//        p.setFechaNacimiento(fecha1);
+//        archivo.seek(pos+132);
+//        p.setNumeroTelefono(archivo.readUTF());
+//        archivo.seek(pos+144);
+//        p.setSalario(archivo.readDouble());
+//        archivo.close();
+//        return p;
+//         }else{
+//            JOptionPane.showMessageDialog (null,"La persona No existe");
+//                 
+//        }
+//        }catch(FileNotFoundException ex){
+//            System.out.println("Archivo no encontrado");
+//        } catch (IOException ex) {
+//            System.out.println("Error de escritura");;
+//        }
         return null;   
        
     }
