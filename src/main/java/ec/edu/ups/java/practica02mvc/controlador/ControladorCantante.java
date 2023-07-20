@@ -21,6 +21,10 @@ public class ControladorCantante {
       public ControladorCantante(ICantanteDAO cantanteDAO){
         this.cantanteDAO = cantanteDAO;
     }
+
+    public ControladorCantante() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public void crear(Cantante cantante){
         this.cantante = cantante;

@@ -29,7 +29,7 @@ public class CantanteDAO implements ICantanteDAO {
 
     public CantanteDAO() {
         listaCantantes = new ArrayList<>();
-        ruta = "C:\\Users\\paulc\\OneDrive\\Desktop\\Practica07-main\\src\\main\\java\\ec\\edu\\ups\\java\\practica02mvc\\compositores.dat";
+        ruta = "src\\main\\java\\ec\\edu\\ups\\java\\practica02mvc\\compositores.dat";
     }
 
     @Override

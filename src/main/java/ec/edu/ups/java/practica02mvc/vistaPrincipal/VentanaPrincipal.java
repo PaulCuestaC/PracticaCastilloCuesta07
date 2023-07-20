@@ -30,8 +30,12 @@ import ec.edu.ups.java.practica02mvc.vistaCantante.VentanaBuscarCantante;
 import ec.edu.ups.java.practica02mvc.vistaCantante.VentanaCrearCantante;
 import ec.edu.ups.java.practica02mvc.vistaCantante.VentanaEliminarCantante;
 import ec.edu.ups.java.practica02mvc.vistaCantante.VentanaListarCantante;
+import java.awt.Graphics;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
+import javax.swing.JLabel;
 
 /**
  *
@@ -68,7 +72,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     //Internacionalización
     private Locale localizacion;
     private ResourceBundle mensajes;
-
+    
+    
+    
+    
+    
+    
+    
     /**
      * Creates new form VentanaPrincipal
      */
@@ -80,8 +90,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorCantante = new ControladorCantante(cantanteDAO);
         localizacion = Locale.getDefault();
         cambiarIdioma();
+        agregarFondo();
+        
     }
+    private void agregarFondo() {
+        // Obtenemos la ruta de la imagen de fondo desde la carpeta "imagenes".
+        String imagePath = "‪C:\\Users\\Personal\\Documents\\NetBeansProjects\\PracticaCastilloCuesta07\\src\\main\\Imagenes\\FondoPrincipal.jpg";
 
+        // Creamos un JLabel para contener la imagen de fondo.
+        JLabel fondoPrincipalLabel = new JLabel(new ImageIcon(imagePath));
+
+        // Establecemos el tamaño y la posición del JLabel para que cubra toda la ventana.
+        fondoPrincipalLabel.setBounds(0, 0, desktopPane.getWidth(), desktopPane.getHeight());
+
+        // Agregamos el JLabel al JDesktopPane.       
+        desktopPane.add(fondoPrincipalLabel);
+
+        // Aseguramos que el JLabel esté detrás de todos los demás componentes del JDesktopPane.
+        desktopPane.setComponentZOrder(fondoPrincipalLabel, 0);
+    }
+    
+    
     private void cambiarIdioma() {
         mensajes = ResourceBundle.getBundle("mensajes.mensaje", localizacion);
 
@@ -184,6 +213,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             ventanaEliminarCancion.cambiarIdioma(localizacion);
         }
 
+        
+        
+        
+        
+        
+        
     }
 
     /**
@@ -196,6 +231,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCompositor = new javax.swing.JMenu();
         jMenuItemCrearCompositor = new javax.swing.JMenuItem();
@@ -230,15 +266,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FondoPrincipal.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
+        desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 624, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, Short.MAX_VALUE)
         );
 
         menuCompositor.setText("Compositor");
@@ -458,7 +499,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -734,6 +777,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemActualizarCancion;
     private javax.swing.JMenuItem jMenuItemActualizarCantante;
