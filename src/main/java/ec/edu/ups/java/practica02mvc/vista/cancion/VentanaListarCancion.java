@@ -8,6 +8,8 @@ import ec.edu.ups.java.practica02mvc.controlador.ControladorCompositor;
 import ec.edu.ups.java.practica02mvc.modelo.Cancion;
 import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,7 +28,7 @@ public class VentanaListarCancion extends javax.swing.JInternalFrame {
         this.controladorCompositor = controladorCompositor;
     }
 
-    private void cargarDatosTabla() {
+    private void cargarDatosTabla() throws Exception {
         DefaultTableModel modelo = (DefaultTableModel) this.tblCancion.getModel();
         modelo.setNumRows(0);
         List<Compositor> listaOperadoras = controladorCompositor.list();
@@ -119,7 +121,11 @@ public class VentanaListarCancion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        cargarDatosTabla();
+        try {
+            cargarDatosTabla();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaListarCancion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_formInternalFrameActivated
 
 

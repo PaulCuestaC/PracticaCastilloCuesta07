@@ -42,12 +42,12 @@ public class ControladorCompositor  {
         compositorDAO.create(compositor);
         
     }
-    public void update(Object obj) {
+    public void update(Object obj,int pos) {
 
-        compositorDAO.update((Compositor) obj);
+        compositorDAO.update((Compositor) obj, pos);
 
     }
-    public Compositor  buscar(String cod){
+    public Compositor  buscar(String cod) throws Exception{
         this.compositor=compositorDAO.read(cod);;
         return this.compositor;
     }
@@ -89,8 +89,8 @@ public class ControladorCompositor  {
     Metodo sobrescrito de la clase IControlador que muestra la lista de personas
     */
 
-    public List<Compositor> list() {
-        return compositorDAO.list();
+    public List<Compositor> list() throws Exception {
+        return (List<Compositor>) compositorDAO.getLista();
     }
 
     /*

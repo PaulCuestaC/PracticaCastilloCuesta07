@@ -9,6 +9,7 @@ import ec.edu.ups.java.practica02mvc.idao.ICantanteDAO;
 import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import ec.edu.ups.java.practica02mvc.modelo.Disco;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -31,13 +32,13 @@ public class ControladorCantante {
         cantanteDAO.create(cantante);
         
     }
-    public void update(Object obj) {
+    public void update(Object obj,int pos) {
 
-        cantanteDAO.update((Cantante) obj);
+        cantanteDAO.update((Cantante) obj, pos);
 
     }
-    public Cantante  buscar(String cod){
-        this.cantante=cantanteDAO.read(cod);;
+    public Cantante  buscar(String cod) throws Exception{
+        this.cantante=cantanteDAO.read(cod);
         return this.cantante;
         
     }
@@ -45,12 +46,12 @@ public class ControladorCantante {
         cantanteDAO.delete(cod);
     }
     
-    public void agregarDisco(Disco disco, String cod){
+    public void agregarDisco(Disco disco, String cod) throws Exception{
         this.cantante = cantanteDAO.read(cod);
         cantante.AgregarDisco(disco);
         
     }
-    public List<Cantante> list() {
-        return cantanteDAO.list();
+    public Set<Cantante> list() throws Exception {
+        return cantanteDAO.getLista();
     }
 }
