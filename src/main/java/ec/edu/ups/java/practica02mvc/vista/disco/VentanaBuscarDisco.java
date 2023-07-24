@@ -10,6 +10,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Disco;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -67,9 +69,19 @@ public class VentanaBuscarDisco extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, -1, 36));
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, -1, 36));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -105,6 +117,31 @@ public class VentanaBuscarDisco extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try {
+            int cod = Integer.parseInt(txtCodigo.getText());
+            
+            List<Cantante> lista = (List<Cantante>) controladorCantante.list();
+            for (Cantante cantante : lista) {
+                if (cantante.readDisco(cod) == null) {
+                    
+                } else {
+                    Disco disco = cantante.readDisco(cod);
+                    txtAñoDeLanzamiento.setText(String.valueOf(disco.getAnioDeLanzamiento()));
+                    txtNombre.setText(disco.getNombre());
+                    
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaBuscarDisco.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+this.setVisible(false);
+limpiarCampos();
+    }//GEN-LAST:event_btnCancelarActionPerformed
     public void limpiarCampos() {
         txtCodigo.setText("");
         txtAñoDeLanzamiento.setText("");

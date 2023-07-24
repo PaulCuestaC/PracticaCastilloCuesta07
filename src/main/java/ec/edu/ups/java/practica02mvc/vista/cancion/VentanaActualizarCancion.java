@@ -10,6 +10,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -111,6 +113,11 @@ public class VentanaActualizarCancion extends javax.swing.JInternalFrame {
         getContentPane().add(txtLetra, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 305, -1));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, -1, 34));
 
         btnCancelar.setText("Cancelar");
@@ -123,6 +130,11 @@ public class VentanaActualizarCancion extends javax.swing.JInternalFrame {
         getContentPane().add(txtTiempoEnMinutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 310, -1));
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, 34));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/canciooooon.png"))); // NOI18N
@@ -130,6 +142,58 @@ public class VentanaActualizarCancion extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        int cod = Integer.parseInt(txtCodigo.getText());
+        try {
+            
+            
+            List<Compositor> lista = controladorCompositor.list();
+            for (Compositor compositor : lista) {
+                if (compositor.readCancion(cod) == null) {
+                    
+                } else {
+                    Cancion cancion = compositor.readCancion(cod);
+                    
+                    txtLetra.setText(cancion.getLetra());
+                    txtTitulo.setText(cancion.getTitulo());
+                    txtTiempoEnMinutos1.setText(String.valueOf(cancion.getTiempoEnMinutos()));
+                    
+                    
+                }
+                
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarCancion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+      int cod = Integer.parseInt(txtCodigo.getText());
+        try {
+            
+            
+            List<Compositor> lista = controladorCompositor.list();
+            for (Compositor compositor : lista) {
+                if (compositor.readCancion(cod) == null) {
+                    
+                } else {
+                    Cancion cancion = compositor.readCancion(cod);
+                    String titulo = txtTitulo.getText();
+                    String letra = txtLetra.getText();
+                    double tiempo = Integer.valueOf(txtTiempoEnMinutos1.getText());
+                    cancion.setLetra(letra);
+                    cancion.setTiempoEnMinutos(tiempo);
+                    cancion.setTitulo(titulo);
+                    compositor.updateCancion(cancion);
+                    controladorCompositor.agregarCancion(compositor, cod);
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarCancion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
 public void limpiarCampos(){
         txtCodigo.setText("");
        

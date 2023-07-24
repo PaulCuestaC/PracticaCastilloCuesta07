@@ -8,6 +8,8 @@ import ec.edu.ups.java.practica02mvc.controlador.ControladorCantante;
 import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -93,12 +95,22 @@ public class VentanaEliminarCantante extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, 40));
 
         btnCancelar.setText("Cancelar");
         getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 80, 40));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 80, 30));
 
         txtSalario.setEditable(false);
@@ -203,6 +215,42 @@ public class VentanaEliminarCantante extends javax.swing.JInternalFrame {
     private void txtEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEdadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEdadActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try {
+            String codigo = txtCodigo.getText();
+            Cantante cantante = controladorCantante.buscar(codigo);
+            txtApellido.setText(cantante.getApellido());
+            txtEdad.setText(String.valueOf(cantante.getEdad()));
+            txtGeneroMusical.setText(cantante.getGeneroMusical());
+            txtNacionalidad.setText(cantante.getNacionalidad());
+            txtNombre.setText(cantante.getNombre());
+            txtNumeroDeConciertos.setText(String.valueOf(cantante.getNumeroDeConciertos()));
+            txtNumeroDeGiras.setText(String.valueOf(cantante.getNumeroDeGiras()));
+            txtNumeroDeSencillos.setText(String.valueOf(cantante.getNumeroDeSencillos()));
+            txtSalario.setText(String.valueOf(cantante.getSalario()));
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaEliminarCantante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+String codigo = txtCodigo.getText();
+
+        int i = JOptionPane.showConfirmDialog(this, "¿Esta seguro de querer eliminar?");
+        if (i == 0) {
+            controladorCantante.eliminarCantante(codigo);
+            
+            String mensajeEliminadoCorrectamente = mensajes.getString("mensaje.eliminadoCorrectamente");
+            JOptionPane.showMessageDialog(this, mensajeEliminadoCorrectamente);
+  
+        } else {
+            
+            String mensajeNoSeHaEliminado = mensajes.getString("mensaje.noSeHaEliminado");
+            JOptionPane.showMessageDialog(this, mensajeNoSeHaEliminado);
+               
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
     public void limpiarCampos() {
         txtApellido.setText("");
         txtCodigo.setText("");

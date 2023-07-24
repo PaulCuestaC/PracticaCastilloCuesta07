@@ -12,14 +12,14 @@
 package ec.edu.ups.java.practica02mvc.dao;
 
 import ec.edu.ups.java.practica02mvc.idao.ICantanteDAO;
-import ec.edu.ups.java.practica02mvc.modelo.Cancion;
 import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import ec.edu.ups.java.practica02mvc.modelo.Disco;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,10 +36,12 @@ public class CantanteDAO implements ICantanteDAO {
        private String ruta;
 
     private Set<Cantante> lista;
-
+private String rutaProyecto = System.getProperty("user.dir");
+    private String nombreArchivo = "\\src\\main\\java\\ec\\edu\\ups\\java\\practica02mvc\\archivos\\cantates.dat";
+    private String rutaCompleta = rutaProyecto + File.separator + nombreArchivo;
     public CantanteDAO() {
        
-        ruta = "C:\\Users\\paulc\\OneDrive\\Desktop\\Practica07-main\\src\\main\\java\\ec\\edu\\ups\\java\\practica02mvc\\compositores.dat";
+ruta = rutaCompleta;
     }
 
     @Override

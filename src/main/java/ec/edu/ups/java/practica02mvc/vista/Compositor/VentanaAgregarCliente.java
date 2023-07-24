@@ -10,6 +10,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -116,6 +118,11 @@ public class VentanaAgregarCliente extends javax.swing.JInternalFrame {
         getContentPane().add(txtNombreCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 211, -1));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -136,8 +143,26 @@ public class VentanaAgregarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodigoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoClienteActionPerformed
-        // TODO add your handling code here:
+       String cod = txtCodigoCliente.getText();
+        try {
+            
+            Cantante cantante = controladorCantante.buscar(cod);
+            txtNombreCom.setText(cantante.getNombre());
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaAgregarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtCodigoClienteActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String cod = txtCodigoCompositor.getText();
+        try {
+            
+            Compositor compositor = controladorCompositor.buscar(cod);
+            txtNombreCom.setText(compositor.getNombre());
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaAgregarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

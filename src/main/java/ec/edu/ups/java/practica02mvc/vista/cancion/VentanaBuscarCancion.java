@@ -10,6 +10,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -122,6 +124,11 @@ public class VentanaBuscarCancion extends javax.swing.JInternalFrame {
         getContentPane().add(txtCodigoAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 262, 310, -1));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 42, -1, 34));
 
         btnCancelar.setText("Cancelar");
@@ -149,6 +156,33 @@ public class VentanaBuscarCancion extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+       int cod = Integer.parseInt(txtCodigo.getText());
+        try {
+            
+            
+            List<Compositor> lista = controladorCompositor.list();
+            for (Compositor compositor: lista) {
+                if(compositor.readCancion(cod)==null){
+                    
+                }
+                else{
+                    Cancion cancion = compositor.readCancion(cod);
+                    txtCodigoAutor.setText(compositor.getCodigo());
+                    txtLetra.setText(cancion.getLetra());
+                    txtTitulo.setText(cancion.getTitulo());
+                    txtTiempoEnMinutos1.setText(String.valueOf(cancion.getTiempoEnMinutos()));
+                    txtNombre.setText(compositor.getNombre());
+                    
+                }
+                
+            }
+            limpiarCampos();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaBuscarCancion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
     public void limpiarCampos(){
         txtCodigo.setText("");
         txtCodigoAutor.setText("");

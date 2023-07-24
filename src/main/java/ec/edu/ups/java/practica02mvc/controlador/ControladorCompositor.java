@@ -170,24 +170,8 @@ public class ControladorCompositor  {
     Metodo para actualizar el obj Persona de clase Compositor
     @param obj: obj Persona de clase compositor a actualizar
     */
-    public void updateCompositor(Object obj) {
-        // Si el obj que entra es de clase compositor entonces
-        if (obj instanceof Compositor) {
-            // Obtenemos el codigo del objeto persona tipo compositor
-            String codigo = ((Compositor) obj).getCodigo();
-            //Recorremos el listado de personas
-            for (int i = 0; i < listaCompositor.size(); i++) {
-                //Obtenemos el objeto persona de la lista personas
-                Persona persona = listaCompositor.get(i);
-                //Si el codigo del obj persona es igual al codigo de la persona de lista Y este obj es de clase Compositor entonces
-                if (persona.getCodigo() == codigo && persona instanceof Compositor) {
-                    //Actualizamos el obj con el nuevo entrante
-                    listaCompositor.set(i, (Compositor) obj);
-                    break;
-                }
-            }
-
-        }
+    public void updateCompositor(Object obj, int cod) {
+       compositorDAO.update(compositor, cod);
 
     }
 
@@ -245,14 +229,8 @@ public class ControladorCompositor  {
         return salida;
     }
 
-   
-    public void create(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
-    public Object read(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   public void agregarCancion(Compositor compositor, int codigo){
+       compositorDAO.agregarCancion(compositor,codigo);
+   }
 
 }

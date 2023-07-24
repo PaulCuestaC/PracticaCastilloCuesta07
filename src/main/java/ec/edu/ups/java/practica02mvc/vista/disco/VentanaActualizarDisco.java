@@ -10,6 +10,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Disco;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -81,6 +83,11 @@ public class VentanaActualizarDisco extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 122, -1, 36));
 
         btnCancelar.setText("Cancelar");
@@ -110,6 +117,11 @@ public class VentanaActualizarDisco extends javax.swing.JInternalFrame {
         getContentPane().add(jLabelDisco3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 180, 41));
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 362, -1, 36));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/discooriginal.png"))); // NOI18N
@@ -118,6 +130,50 @@ public class VentanaActualizarDisco extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try {
+            int cod = Integer.parseInt(txtCodigo.getText());
+            
+            List<Cantante> lista = (List<Cantante>) controladorCantante.list();
+            for (Cantante cantante : lista) {
+                if (cantante.readDisco(cod) == null) {
+                    
+                } else {
+                    Disco disco = cantante.readDisco(cod);
+                    txtAñoDeLanzamiento.setText(String.valueOf(disco.getAnioDeLanzamiento()));
+                    txtNombre.setText(disco.getNombre());
+                    txtCodigo.setEditable(false);
+                }
+                
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarDisco.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        try {
+            int cod = Integer.parseInt(txtCodigo.getText());
+            
+            List<Cantante> lista = (List<Cantante>) controladorCantante.list();
+            for (Cantante cantante : lista) {
+                if (cantante.readDisco(cod) == null) {
+                    
+                } else {
+                    Disco disco = cantante.readDisco(cod);
+                    int anio = Integer.parseInt(txtAñoDeLanzamiento.getText());
+                    disco.setAnioDeLanzamiento(anio);
+                    String nombre = txtAñoDeLanzamiento.getText();
+                    disco.setNombre(nombre);
+                    cantante.updateDisco(disco);
+                    controladorCantante.update(cantante,cod);
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarDisco.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
     public void limpiarCampos() {
         txtCodigo.setText("");
         txtAñoDeLanzamiento.setText("");

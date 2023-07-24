@@ -10,6 +10,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -122,6 +124,11 @@ public class VentanaEliminarCancion extends javax.swing.JInternalFrame {
         getContentPane().add(txtCodigoAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 310, -1));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, -1, 34));
 
         btnCancelar.setText("Cancelar");
@@ -140,6 +147,11 @@ public class VentanaEliminarCancion extends javax.swing.JInternalFrame {
         getContentPane().add(txtTiempoEnMinutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 310, -1));
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 380, -1, 34));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/canciooooon.png"))); // NOI18N
@@ -148,6 +160,56 @@ public class VentanaEliminarCancion extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        int cod = Integer.parseInt(txtCodigo.getText());
+        try {
+           
+            
+            List<Compositor> lista = controladorCompositor.list();
+            for (Compositor compositor : lista) {
+                if (compositor.readCancion(cod) == null) {
+                    
+                } else {
+                    Cancion cancion = compositor.readCancion(cod);
+                    txtCodigoAutor.setText(compositor.getCodigo());
+                    txtLetra.setText(cancion.getLetra());
+                    txtTitulo.setText(cancion.getTitulo());
+                    txtTiempoEnMinutos1.setText(String.valueOf(cancion.getTiempoEnMinutos()));
+                    txtNombre.setText(compositor.getNombre());
+                    
+                }
+                
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaEliminarCancion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        int cod = Integer.parseInt(txtCodigo.getText());
+        try {
+           
+            
+            List<Compositor> lista = controladorCompositor.list();
+            for (Compositor compositor : lista) {
+                if (compositor.readCancion(cod) == null) {
+                    
+                } else {
+                    Cancion cancion = compositor.readCancion(cod);
+                    txtCodigoAutor.setText(compositor.getCodigo());
+                    txtLetra.setText(cancion.getLetra());
+                    txtTitulo.setText(cancion.getTitulo());
+                    txtTiempoEnMinutos1.setText(String.valueOf(cancion.getTiempoEnMinutos()));
+                    txtNombre.setText(compositor.getNombre());
+                    
+                }
+                
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaEliminarCancion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
     public void limpiarCampos() {
         txtCodigo.setText("");
         txtCodigoAutor.setText("");

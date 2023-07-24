@@ -23,9 +23,7 @@ public class ControladorCantante {
         this.cantanteDAO = cantanteDAO;
     }
 
-    public ControladorCantante() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
     
     public void crear(Cantante cantante){
     //Metodo para crear el cantante y almacenarlo en la fuente de datos 
@@ -72,6 +70,10 @@ public class ControladorCantante {
         this.cantante = cantanteDAO.read(cod);
         cantante.AgregarDisco(disco);
         
+    }
+    public void eliminarDisco(Disco disco, String cod) throws Exception{
+        this.cantante = cantanteDAO.read(cod);
+        cantante.deleteDisco(Integer.parseInt(cod));
     }
     public Set<Cantante> list() throws Exception {
         return cantanteDAO.getLista();

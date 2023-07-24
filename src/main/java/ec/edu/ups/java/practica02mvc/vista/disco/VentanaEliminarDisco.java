@@ -10,6 +10,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Disco;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -82,6 +84,11 @@ public class VentanaEliminarDisco extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(666, 81, -1, 36));
 
         btnCancelar.setText("Cancelar");
@@ -119,6 +126,38 @@ public class VentanaEliminarDisco extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try {
+            int cod = Integer.parseInt(txtCodigo.getText());
+            
+            List<Cantante> lista = (List<Cantante>) controladorCantante.list();
+            for (Cantante cantante : lista) {
+                if (cantante.readDisco(cod) == null) {
+                    
+                } else {
+                    Disco disco = cantante.readDisco(cod);
+                    int i = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminarlo?");
+                    if (i == 0) {
+                        cantante.deleteDisco(cod);
+                        controladorCantante.eliminarDisco(disco, String.valueOf(cod));
+                        
+                        String mensajeSeEliminoElDisco = mensajes.getString("mensaje.seEliminoElDisco");
+                        JOptionPane.showMessageDialog(this, mensajeSeEliminoElDisco);
+                        
+                    } else {
+                        
+                        String mensajeNoSeEliminoElDisco = mensajes.getString("mensaje.noseEliminoElDisco");
+                        JOptionPane.showMessageDialog(this, mensajeNoSeEliminoElDisco);
+                    }
+                    
+                }
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaEliminarDisco.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
     public void limpiarCampos() {
         txtCodigo.setText("");
         txtAñoDeLanzamiento.setText("");

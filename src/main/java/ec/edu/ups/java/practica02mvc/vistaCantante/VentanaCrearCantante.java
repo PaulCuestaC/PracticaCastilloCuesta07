@@ -111,9 +111,19 @@ public class VentanaCrearCantante extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 80, 40));
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 80, 40));
 
         txtSalario.setEditable(false);
@@ -219,6 +229,38 @@ public class VentanaCrearCantante extends javax.swing.JInternalFrame {
     private void txtEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEdadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEdadActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+  String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        String codigo = txtCodigo.getText();
+        int edad = Integer.parseInt(txtEdad.getText());
+        String nacionalidad = txtNacionalidad.getText();
+        String genero = txtGeneroMusical.getText();
+        int numCon = Integer.parseInt(txtNumeroDeConciertos.getText());
+        int numSen = Integer.parseInt(txtNumeroDeSencillos.getText());
+        int numGir = Integer.parseInt(txtNumeroDeGiras.getText());
+        Cantante cantante = new Cantante();
+        cantante.setNombre(nombre);
+        cantante.setEdad(edad);
+        cantante.setApellido(apellido);
+        cantante.setCodigo(codigo);
+        cantante.setNacionalidad(nacionalidad);
+        cantante.setNumeroDeGiras(numGir);
+        cantante.setNumeroDeConciertos(numCon);
+        cantante.setNumeroDeSencillos(numSen);
+        
+        controladorCantante.crear(cantante);
+      
+        String mensajeCantanteAñadido = mensajes.getString("mensaje.cantanteAñadido");
+        JOptionPane.showMessageDialog(this, mensajeCantanteAñadido);
+        
+        limpiarCampos();
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+System.exit(0);
+    }//GEN-LAST:event_btnCancelarActionPerformed
     public void limpiarCampos() {
         this.txtApellido.setText("");
         this.txtCodigo.setText("");

@@ -9,6 +9,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import ec.edu.ups.java.practica02mvc.modelo.Disco;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -74,6 +76,11 @@ public class VentanaCrearDisco extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, -1, 36));
 
         btnCancelar.setText("Cancelar");
@@ -113,6 +120,11 @@ public class VentanaCrearDisco extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 100, 41));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, -1, 34));
 
         txtNombreCantante.setEditable(false);
@@ -131,8 +143,45 @@ public class VentanaCrearDisco extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+this.setVisible(false);
+limpiarCampos();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
+        try {
+            String codigation = txxtCodigoCantante1.getText();
+            
+            Cantante cantante = controladorCantante.buscar(codigation);
+            txtNombreCantante.setText(cantante.getNombre());
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaCrearDisco.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        try {
+            String codigation = txxtCodigoCantante1.getText();
+            
+            Cantante cantante = controladorCantante.buscar(codigation);
+            String nombre = txtNombre.getText();
+            int codigo = Integer.parseInt(txtNombre.getText());
+            int fecha = Integer.parseInt(txtAñoDeLanzamiento.getText());
+            Disco disco = null;
+            disco.setNombre(nombre);
+            disco.setCodigo(codigo);
+            disco.setAnioDeLanzamiento(fecha);
+            cantante.AgregarDisco(disco);
+            controladorCantante.update(cantante, codigo);
+            
+            String mensajeCancionAñadida = mensajes.getString("mensaje.cancionAñadida");
+            JOptionPane.showMessageDialog(this, mensajeCancionAñadida);
+            
+            limpiarCampos();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaCrearDisco.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
 public void limpiarCampos(){
     this.txtAñoDeLanzamiento.setText("");
     this.txtCodigo.setText("");

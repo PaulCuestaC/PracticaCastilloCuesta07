@@ -8,6 +8,8 @@ import ec.edu.ups.java.practica02mvc.controlador.ControladorCompositor;
 import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -97,6 +99,11 @@ public class VentanaBuscarCompositor extends javax.swing.JInternalFrame {
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, 37));
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, -1, 37));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -165,8 +172,23 @@ public class VentanaBuscarCompositor extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        try {
+            Compositor compositor =controladorCompositor.buscar(txtCodigo.getText());
+            txtApellido.setText(compositor.getApellido());
+            txtEdad.setText(String.valueOf(compositor.getEdad()));
+            txtNacionalidad.setText(compositor.getNacionalidad());
+            txtNombre.setText(compositor.getNombre());
+            txtNumeroComposiciones.setText(String.valueOf(compositor.getNumeroDeComposiciones()));
+            txtSalario.setText(String.valueOf(compositor.getSalario()));
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaBuscarCompositor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+this.setVisible(false);
+limpiarCampos();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 public void limpiarCampos(){
     txtApellido.setText("");
     txtCodigo.setText("");

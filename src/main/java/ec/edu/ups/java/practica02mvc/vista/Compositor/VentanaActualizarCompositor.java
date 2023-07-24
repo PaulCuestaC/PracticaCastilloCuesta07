@@ -8,6 +8,8 @@ import ec.edu.ups.java.practica02mvc.controlador.ControladorCompositor;
 import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -90,6 +92,11 @@ public class VentanaActualizarCompositor extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, 37));
 
         btnCancelar.setText("Cancelar");
@@ -138,6 +145,11 @@ public class VentanaActualizarCompositor extends javax.swing.JInternalFrame {
         getContentPane().add(txtNacionalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 260, 211, -1));
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, -1, 37));
 
         jLabelCompositor3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -150,6 +162,46 @@ public class VentanaActualizarCompositor extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+      String cod = txtCodigo.getText();
+        try {
+            
+            Compositor compositor = (controladorCompositor.buscar(cod));
+            txtApellido.setText(compositor.getApellido());
+            txtEdad.setText(String.valueOf(compositor.getEdad()));
+            txtNacionalidad.setText(compositor.getNacionalidad());
+            txtNombre.setText(compositor.getNombre());
+            txtNumeroComposiciones.setText(String.valueOf(compositor.getNumeroDeComposiciones()));
+            txtSalario.setText(String.valueOf(compositor.getSalario()));
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarCompositor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        String cod = txtCodigo.getText();
+        try {
+            
+            Compositor compositor = (controladorCompositor.buscar(cod));
+            compositor.setApellido(txtApellido.getText());
+            compositor.setEdad(Integer.parseInt(txtEdad.getText()));
+            compositor.setNombre(txtNombre.getText());
+            compositor.setNacionalidad(txtNacionalidad.getText());
+            compositor.setNumeroDeComposiciones(Integer.parseInt(txtNumeroComposiciones.getText()));
+            compositor.setSalario(Integer.parseInt(txtSalario.getText()));
+            
+            controladorCompositor.update(compositor, Integer.parseInt(cod));
+            String mensajeCompositorActualizado = mensajes.getString("mensaje.compositorActualizado");
+            JOptionPane.showMessageDialog(this, mensajeCompositorActualizado);
+            
+            limpiarCampos();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarCompositor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     public void limpiarCampos() {
         this.txtApellido.setText("");

@@ -13,7 +13,7 @@ import java.util.Set;
  * @author ESTUDIANTE
  */
 public interface ICompositorDAO {
-      public abstract void create(Compositor compositor); //C
+        public abstract void create(Compositor compositor); //C
 
     public abstract Compositor read(String cod)throws Exception; //R
 
@@ -22,4 +22,6 @@ public interface ICompositorDAO {
     public abstract void delete(String cod); //D
 
     public abstract Set<Compositor> getLista() throws Exception;
+    
+    public void agregarCancion(Compositor compositor, int codigo);
 }

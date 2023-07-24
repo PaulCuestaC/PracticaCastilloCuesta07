@@ -8,6 +8,8 @@ import ec.edu.ups.java.practica02mvc.controlador.ControladorCompositor;
 import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -69,6 +71,7 @@ public class VentanaEliminarCompositor extends javax.swing.JInternalFrame {
         txtEdad = new javax.swing.JTextField();
         txtNacionalidad = new javax.swing.JTextField();
         jLabelCompositor4 = new javax.swing.JLabel();
+        btnAceptar1 = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
@@ -139,8 +142,21 @@ public class VentanaEliminarCompositor extends javax.swing.JInternalFrame {
         jLabelCompositor4.setText("Eliminar compositor");
         getContentPane().add(jLabelCompositor4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 230, 30));
 
+        btnAceptar1.setText("Buscar");
+        btnAceptar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptar1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAceptar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, -1, 37));
+
         btnAceptar.setText("Aceptar");
-        getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, -1, 37));
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, -1, 37));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Compositor.png"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 470));
@@ -148,9 +164,48 @@ public class VentanaEliminarCompositor extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+  int confirm = JOptionPane.showConfirmDialog(this, "¿Esta seguro?");
+        if (confirm == 0) {
+      try {
+          Compositor compositor = controladorCompositor.buscar(txtCodigo.getText());
+          controladorCompositor.delete(evt);
+          
+          
+          String mensajeCompositorFueEliminadoCorrectamente = mensajes.getString("mensaje.compositorFueEliminadoCorrectamente");
+          JOptionPane.showMessageDialog(this,mensajeCompositorFueEliminadoCorrectamente);
+      } catch (Exception ex) {
+          Logger.getLogger(VentanaEliminarCompositor.class.getName()).log(Level.SEVERE, null, ex);
+      }
+         
+
+        } else {
+            
+            String mensajeCompositorNoFueEliminadoCorrectamente = mensajes.getString("mensaje.compositorNoFueEliminadoCorrectamente");
+            JOptionPane.showMessageDialog(this, mensajeCompositorNoFueEliminadoCorrectamente);
+
+        }
+
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptar1ActionPerformed
+        try {
+            Compositor compositor =controladorCompositor.buscar(txtCodigo.getText());
+            txtApellido.setText(compositor.getApellido());
+            txtEdad.setText(String.valueOf(compositor.getEdad()));
+            txtNacionalidad.setText(compositor.getNacionalidad());
+            txtNombre.setText(compositor.getNombre());
+            txtNumeroComposiciones.setText(String.valueOf(compositor.getNumeroDeComposiciones()));
+            txtSalario.setText(String.valueOf(compositor.getSalario()));
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaEliminarCompositor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAceptar1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnAceptar1;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

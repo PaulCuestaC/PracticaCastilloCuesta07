@@ -595,7 +595,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
 
         ventanaListarCantante.setVisible(true);
-        ventanaListarCantante.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItemListarCantanteActionPerformed
 
     private void jMenuItemActualizarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemActualizarCancionActionPerformed

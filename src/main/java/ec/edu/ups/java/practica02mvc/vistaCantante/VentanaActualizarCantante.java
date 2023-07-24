@@ -8,6 +8,8 @@ import ec.edu.ups.java.practica02mvc.controlador.ControladorCantante;
 import ec.edu.ups.java.practica02mvc.modelo.Cantante;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -93,12 +95,27 @@ public class VentanaActualizarCantante extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, 40));
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 80, 40));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 80, 30));
 
         txtSalario.setEditable(false);
@@ -187,7 +204,7 @@ public class VentanaActualizarCantante extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 104, 41));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/sodapdf-converted (4).png"))); // NOI18N
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 580, 510));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 670, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -204,7 +221,75 @@ public class VentanaActualizarCantante extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEdadActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+       String cod = txtCodigo.getText();
+        try {
+           
+            Cantante cantante = controladorCantante.buscar(cod);
+            txtApellido.setText(cantante.getApellido());
+            txtEdad.setText(String.valueOf(cantante.getEdad()));
+            txtGeneroMusical.setText(cantante.getGeneroMusical());
+            txtNacionalidad.setText(cantante.getNacionalidad());
+            txtNombre.setText(cantante.getNombre());
+            txtNumeroDeConciertos.setText(String.valueOf(cantante.getNumeroDeConciertos()));
+            txtNumeroDeGiras.setText(String.valueOf(cantante.getNumeroDeGiras()));
+            txtNumeroDeSencillos.setText(String.valueOf(cantante.getNumeroDeSencillos()));
+            txtSalario.setText(String.valueOf(cantante.getSalario()));
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarCantante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        try {
+            String apellido = txtApellido.getText();
+            int edad = Integer.parseInt(txtEdad.getText());
+            String generoMusical = txtGeneroMusical.getText();
+            String nacionalidad = txtNacionalidad.getText();
+            String nombre = txtNombre.getText();
+            int numCo = Integer.parseInt(txtNumeroDeConciertos.getText());
+            int numGi = Integer.parseInt(txtNumeroDeGiras.getText());
+            int numSe = Integer.parseInt(txtNumeroDeSencillos.getText());
+            double salario = Integer.parseInt(txtSalario.getText());
+            String cod = txtCodigo.getText();
+            Cantante cantante = controladorCantante.buscar(cod);
+            cantante.setApellido(apellido);
+            cantante.setEdad(edad);
+            cantante.setNacionalidad(nacionalidad);
+            cantante.setNombre(nombre);
+            cantante.setNumeroDeConciertos(numCo);
+            cantante.setNumeroDeGiras(numGi);
+            cantante.setNumeroDeSencillos(numSe);
+            cantante.setSalario(salario);
+            
+            controladorCantante.update(cantante, Integer.parseInt(cod));
+            
+            String mensajeCantanteActualizado = mensajes.getString("mensaje.cantanteActualizado");
+            JOptionPane.showMessageDialog(this, mensajeCantanteActualizado);
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaActualizarCantante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+               
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+this.setVisible(false);
+limpiarCampos();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+ public void limpiarCampos() {
+        txtApellido.setText("");
+        txtCodigo.setText("");
+        txtEdad.setText("");
+        txtGeneroMusical.setText("");
+        txtNacionalidad.setText("");
+        txtNombre.setText("");
+        txtNumeroDeConciertos.setText("");
+        txtNumeroDeGiras.setText("");
+        txtNumeroDeSencillos.setText("");
+        txtSalario.setText("");
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBuscar;
