@@ -5,7 +5,7 @@ package ec.edu.ups.java.practica02mvc.modelo;
 
 import java.util.Objects;
 
-
+//CLASE Padrre
 public abstract class Persona {
 
     private String codigo; // atributo entero que guarda el código de la persona

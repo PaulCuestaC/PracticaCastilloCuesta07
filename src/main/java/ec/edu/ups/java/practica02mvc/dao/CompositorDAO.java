@@ -35,6 +35,7 @@ private Set<Compositor> lista;
 
     @Override
     public void create(Compositor compositor) {
+//Se crea un nuevo registro de un objeto "Compositor" y se escribe en un archivo binario
         try {
             RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");
             //Escribe desde el final del archivo
@@ -67,7 +68,7 @@ private Set<Compositor> lista;
                     nombre = nombre + " ";
                 }
             }
-
+//guarda información sobre el compositor en un archivo de codigo, nombre, etc
             archivo.writeInt(codigo);
             archivo.writeUTF(nombre);
             archivo.writeUTF(apellido);
@@ -77,12 +78,15 @@ private Set<Compositor> lista;
 
             archivo.writeDouble(salario);
             if (canciones.size() < 10) {
+//agregamos nuevas canciones hasta que alcance 10 y si lo hace procede a 
+//ejecutar otro codigo
                 for (int i = canciones.size() + 1; i < 10; i++) {
                     Cancion e = new Cancion();
-
                     canciones.add(e);
                 }
             }
+            
+//rellenamos los espacios si tienen menos de 25 caracterea 
             for (int i = 0; i < 10; i++) {
                 Cancion cancion = canciones.get(i);
                 String cancionN = cancion.getTitulo();
@@ -105,6 +109,7 @@ private Set<Compositor> lista;
 
             }
             if (cliente.size() < 10) {
+//si la lista tiene menos  de 10 elementos se agregan nuevas instancias de Cantante 
                 for (int i = cliente.size() + 1; i < 10; i++) {
                     Cantante e = new Cantante();
 
@@ -134,6 +139,8 @@ private Set<Compositor> lista;
 
     @Override
     public Compositor read(String cod) throws Exception {
+//Se lee los datos de un "Compositor" almacenado en un archivo binario, 
+//utilizando un código específico para ubicar el registro en el archivo
         int cod2 = Integer.parseInt(cod);
         cod2 = cod2 - 1;
         cod2 = cod2 * 1027;
@@ -196,8 +203,12 @@ private Set<Compositor> lista;
 
     @Override
     public void update(Compositor compositor, int cod2) {
+//Actualiza los datos de un "Compositor" en un archivo binario
+//calcula la posición en el archivo basada en el valor "cod2"
+//lee el contenido del registro en esa posición para verificar si existe algún dato en él
+//Si encuentra datos válidos, obtiene la información actualizada del objeto "Compositor"
 
-        try {
+try {
             RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");
             //Escribe desde el final del archivo
             cod2 = cod2 - 1;
@@ -305,6 +316,11 @@ private Set<Compositor> lista;
 
     @Override
     public void delete(String cod) {
+//el código proporcionado ("cod") es para calcular la posición en el archivo
+//donde se encuentra el registro a eliminar. Se verifica si el registro 
+//contiene datos válidos.Si el registro ya está vacío  se muestra que la 
+//persona ya no existe.De lo contrario, escribe espacios en blanco en el 
+//registro para eliminar los datos y cierra el archivo.
         try {
             int pos = Integer.parseInt(cod);
             RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");
@@ -337,6 +353,10 @@ private Set<Compositor> lista;
 
     @Override
     public Set<Compositor> getLista() throws Exception {
+//Se lee datos de varios registros de compositores almacenados en un 
+//archivo binario y los almacena en un conjunto, evitando los registros que 
+//están marcados como eliminados y asegurándose de que no haya 
+//duplicados en la lista final
         lista = new HashSet<Compositor>();
         try {
             RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");

@@ -102,23 +102,37 @@ public class Cantante extends Persona {
     }
 
     public void AgregarDisco(Disco disco) {
+    //Metodo para agregar un obejeto de tipo Disco a la lista
+    //discografia en el ultimo puedo por el add
         discografia.add(disco);
     }
 
     public Disco readDisco(int cod) {
-
+    //metodo que representa el codigo del disco que se desea
+    //buscar en la lista discografia
         for (Disco disco : discografia) {
+            //recorre la lista discografia y se asignara a la variable disco        
             if (disco.getCodigo() == (cod)) {
+            //si el codigo del disco actual coincide 
+            //con el codigo buscado se ejecutara el if 
                 return disco;
+                //devolvera la disco encunetrada 
+               
             }
         }
-        return null;
-    }
+        return null;    }
+
 
     public void updateDisco(Disco disco) {
+    //metodo para actualizar el disco de la lista discografia
         for (int i = 0; i < discografia.size(); i++) {
+        //for para recorrer la lista discografia 
+        //comienza en 0 y continuara mientras  i sea menor que el tamano de la lista             
             Disco discoGuar = discografia.get(i);
             if (discoGuar.getCodigo() == (disco.getCodigo())) {
+            //si el disco actual es igual al disco proporcionado
+            //se encontrara el disco que vamos a actualizar
+            //reemplazaremos ese disco en la lista por la version actualizada              
                 discografia.set(i, disco);
                 break;
             }
@@ -126,9 +140,15 @@ public class Cantante extends Persona {
     }
 
     public void deleteDisco(int cod) {
+    //metodo para eliminar el disco  de la lista discografia    
         for (int i = 0; i < discografia.size(); i++) {
+        //recorre la lista discografia con el indice i     
+        //obtiene el disco actual de la lista en la posición i 
+        //y se almacena en la variable discosad    
             Disco discosad = discografia.get(i);
             if (discosad.getCodigo()==(cod)) {
+            //Comparamos el disco actual con el disco proporcionado como parametro
+            //Si es igual, el disco se eliminara de la lista en la posicion i               
                 discografia.remove(i);
                 break;
             }

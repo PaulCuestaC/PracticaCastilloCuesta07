@@ -40,7 +40,7 @@ public class Compositor extends Persona {
      */
     public Compositor() {
     }
-
+    //getters y setters  
     public int getNumeroDeComposiciones() {
         return numeroDeComposiciones;
     }
@@ -66,25 +66,39 @@ public class Compositor extends Persona {
     }
 
     
-
+//Agregamos una nueva cancion a la lista 
     public void AgregarCancion(Cancion cancion) {
-        cancionesTop100Billboard.add(cancion);
+        cancionesTop100Billboard.add(cancion);//Agregamos una nueva cancion al final de la lista 
+                                                //mediante el metodo add
     }
 
     public Cancion readCancion(int cod) {
-
+    //metodo que representa el codigo de la cancion que se desa buscar en la lista
+    //cancionesTop100Billboard
         for (Cancion cancion : cancionesTop100Billboard) {
+        //recorre la lista cancionesTop100Billboard y se asignara a la variable cancion
             if (cancion.getCodigo() == (cod)) {
+            //si el codigo de la cancion actual coincide 
+            //con el codigo buscado de ejecutara el if 
                 return cancion;
+                //devolvera la cancion encunetrada 
+                
             }
         }
         return null;
     }
 
     public void updateCancion(Cancion cancion) {
+    //metodo para actualizar la cancion de la lista cancionesTop100Billboard
         for (int i = 0; i < cancionesTop100Billboard.size(); i++) {
+        //for para recorrer la lista cancionesTop100Billboard 
+        //comienza en 0 y continuara mientras  i sea menor que el tamano de la lista 
             Cancion cancionGuar = cancionesTop100Billboard.get(i);
             if (cancionGuar.getCodigo() == (cancion.getCodigo())) {
+            //si la cancion actual es igual a la cancion proporcionada 
+            //se encontrara la cancion que vamos a actualizar
+            //reemplazaremos esa cancion en la lista por la version actualizada 
+          
                 cancionesTop100Billboard.set(i, cancion);
                 break;
             }
@@ -92,9 +106,15 @@ public class Compositor extends Persona {
     }
 
     public void deleteCancion(int cod) {
+    //metodo para eliminar la cancion de la lista cancionesTop100Billboard
         for (int i = 0; i < cancionesTop100Billboard.size(); i++) {
+        //recorre la lista cancionesTop100Billboard con el indice i     
+        //obtiene la canción actual de la lista en la posición i 
+        //y se almacena en la variable cancionSad
             Cancion cancionSad = cancionesTop100Billboard.get(i);
             if (cancionSad.getCodigo() == (cod)) {
+            //Comparamos la cancion actual con la  cancion proporcionada como parametro
+            //Si es igual, la cancion se eliminara de la lista en la posicion i
                 cancionesTop100Billboard.remove(i);
                 break;
             }

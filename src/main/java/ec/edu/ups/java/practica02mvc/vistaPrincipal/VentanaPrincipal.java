@@ -90,27 +90,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorCantante = new ControladorCantante(cantanteDAO);
         localizacion = Locale.getDefault();
         cambiarIdioma();
-        agregarFondo();
         
     }
-    private void agregarFondo() {
-        // Obtenemos la ruta de la imagen de fondo desde la carpeta "imagenes".
-        String imagePath = "‪C:\\Users\\Personal\\Documents\\NetBeansProjects\\PracticaCastilloCuesta07\\src\\main\\Imagenes\\FondoPrincipal.jpg";
-
-        // Creamos un JLabel para contener la imagen de fondo.
-        JLabel fondoPrincipalLabel = new JLabel(new ImageIcon(imagePath));
-
-        // Establecemos el tamaño y la posición del JLabel para que cubra toda la ventana.
-        fondoPrincipalLabel.setBounds(0, 0, desktopPane.getWidth(), desktopPane.getHeight());
-
-        // Agregamos el JLabel al JDesktopPane.       
-        desktopPane.add(fondoPrincipalLabel);
-
-        // Aseguramos que el JLabel esté detrás de todos los demás componentes del JDesktopPane.
-        desktopPane.setComponentZOrder(fondoPrincipalLabel, 0);
-    }
-    
-    
+        
     private void cambiarIdioma() {
         mensajes = ResourceBundle.getBundle("mensajes.mensaje", localizacion);
 

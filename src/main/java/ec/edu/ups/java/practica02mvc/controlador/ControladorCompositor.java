@@ -25,9 +25,14 @@ public class ControladorCompositor  {
      * Constructor que inicializa la lista de la clase ControladorPersona
      */
     public ControladorCompositor() { 
+        //Creamos una instanxia de ControladorCompositor 
+        //almacenamos objetos de tipo "Compositor" en el controlador
+        //con la inicializacion de la lista listaCompositor
         listaCompositor = new ArrayList<>();
     }
     public ControladorCompositor(ICompositorDAO controladorDAO){
+        //Contructor para acceder a los metodos relacionados al compositor 
+        //acceder a los metodos de la interfaz
         this.compositorDAO = controladorDAO;
     }
 
@@ -38,17 +43,28 @@ public class ControladorCompositor  {
 
     
     public void crear(Compositor compositor){
+    //Metodo para crear el compositor y almacenarlo en la fuente de datos 
+    //Llamamos al metodo del ICompositorDAO de la interfaz para almacenar 
+    //el objeto compositor 
         this.compositor = compositor;
         compositorDAO.create(compositor);
         
     }
     public void update(Object obj,int pos) {
-
+    //metodo para actualizar el objeto en la posicion pos de la 
+    //interfaz ICompositorDAO
+    //implementamos y realizamos un casting a Compositor para   
+    //que el objeto sea tratado como un objeto de tipo Compositor
         compositorDAO.update((Compositor) obj, pos);
 
     }
     public Compositor  buscar(String cod) throws Exception{
-        this.compositor=compositorDAO.read(cod);;
+    //metodo para buscar el codigo del compositor 
+    //si encuentra una coincidencia o lanzará una excepción 
+    //si ocurre algún error durante la búsqueda
+    //implementamos lo de la interfaz para buscar el objeto Compositor 
+    //el read se encarga de la operación de lectura en la fuente de datos
+        this.compositor=compositorDAO.read(cod);
         return this.compositor;
     }
   
@@ -72,11 +88,21 @@ public class ControladorCompositor  {
     */
 
     public void delete(Object obj) {
+    //metodo para eliminar el compositor 
         if (obj instanceof Persona) {
-
+        //verificamos que el objeto  es una instancia de la clase Persona
+        //mediante el instanceof 
             for (int i = 0; i < listaCompositor.size(); i++) {
+            //Si el objeto obj es una instancia de Persona, se inicia un bucle 
+            //se recorre la lista listaCompositor utilizando un índice i
+            //se obtiene el objeto Persona actual de la lista en la posición i 
+            //y se almacena en la variable persona.
                 Persona persona = listaCompositor.get(i);
                 if (persona.equals((Persona) obj)) {
+                //verificamos si el el objeto persona es igual al objeto obj 
+                //utilizando el método equals()
+                //Aseguramos de que ambos objetos sean del tipo Persona antes de compararlos
+                //Si encontramos el objeto Persona en la lista, se procede a eliminar 
                     listaCompositor.remove(i);
                     break;
                 }

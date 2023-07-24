@@ -87,7 +87,7 @@ public class CantanteDAO implements ICantanteDAO {
                     nombre = nombre + " ";
                 }
             }
-
+//guarda información sobre el cantante en un archivo de codigo, edad,etc.
             archivo.writeInt(codigo);
             archivo.writeUTF(nombre);
             archivo.writeUTF(apellido);
@@ -100,13 +100,18 @@ public class CantanteDAO implements ICantanteDAO {
             archivo.writeInt(numeroSencillos);
             archivo.writeDouble(salario);
             if (discografia.size() < 10) {
+ //si hay menos de 10 elementos en la lista), el código realiza un bucle "for"                
                 for (int i = discografia.size() + 1; i < 10; i++) {
+                //Agregar discos adicionales a la lista hasta que alcance 
+                //un total de 10 elementos.
                     Disco e = new Disco();
-
                     discografia.add(e);
                 }
             }
+            
             for (int i = 0; i < 10; i++) {
+//asegurar que el nombre de cada disco en la lista "discografia" tenga 
+//una longitud de exactamente 25 caracteres y si es mas corto se llena de espacios
                 Disco disco = discografia.get(i);
                 String discoN = disco.getNombre();
                 if (discoN.length() < 25) {
@@ -123,8 +128,10 @@ public class CantanteDAO implements ICantanteDAO {
             archivo.close();
 
         } catch (FileNotFoundException ex) {
+            //el archivo no se encontro
             Logger.getLogger(CantanteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
+            
             JOptionPane.showMessageDialog(null, ex);
         }
     }
@@ -136,12 +143,16 @@ public class CantanteDAO implements ICantanteDAO {
         cod2 = cod2 * 517;
 
         try {
+//abrir un archivo en modo de lectura y escritura y luego se posiciona en una ubicación 
+//específica en ese archivo
             RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");
             archivo.seek(cod2);
             Cantante p = new Cantante();
             //Leer archivo binario
             archivo.seek(cod2);
             if (archivo.readUTF() != null) {
+//abrir un archivo en modo de lectura y escritura y luego se posiciona en una ubicación 
+//específica en ese archivo
                 archivo.seek(cod2);
                 p.setNombre(archivo.readUTF().trim());
                 archivo.seek(cod2 + 31);
@@ -167,6 +178,8 @@ public class CantanteDAO implements ICantanteDAO {
                 List<Disco> discografiando = null;
 
                 for (int j = 0; j < 10; j++) {
+//leemos datos de un archivo binario, y calculamos la posicion dentro del archivo
+//para cada discoo
                     archivo.seek(cod2 + (35 * j) + 163);
                     Disco disco = new Disco();
                     disco.setCodigo(archivo.readInt());
@@ -289,6 +302,8 @@ public class CantanteDAO implements ICantanteDAO {
 
     @Override
     public void delete(String cod) {
+//eliminar un registro de información en un archivo binario utilizando un 
+//enfoque de "marcaje" del registro
         try {
             int pos = Integer.parseInt(cod);
             RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");
@@ -320,6 +335,7 @@ public class CantanteDAO implements ICantanteDAO {
     }
 
     public Set<Cantante> getLista() throws Exception {
+//leemos datos de varios registros de cantantes almacenados en un archivo binario
         lista = new HashSet<Cantante>();
         try {
             RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");
