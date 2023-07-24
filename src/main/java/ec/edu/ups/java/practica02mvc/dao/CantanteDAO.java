@@ -147,7 +147,7 @@ public class CantanteDAO implements ICantanteDAO {
 //abrir un archivo en modo de lectura y escritura y luego se posiciona en una ubicación 
 //específica en ese archivo
             RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");
-            archivo.seek(cod2);
+          
 
             //Leer archivo binario
             archivo.seek(cod2);
@@ -156,37 +156,37 @@ public class CantanteDAO implements ICantanteDAO {
 //específica en ese archivo
                 archivo.seek(cod2);
                 p.setNombre(archivo.readUTF().trim());
-                archivo.seek(cod2 + 31);
+                
                 p.setApellido(archivo.readUTF().trim());
-                archivo.seek(cod2 + 58);
+                
 
                 p.setEdad(archivo.readInt());
-                archivo.seek(cod2 + 62);
+                
                 p.setGeneroMusical(archivo.readUTF());
-                archivo.seek(cod2 + 89);
+                
                 p.setNacionalidad(archivo.readUTF());
-                archivo.seek(cod2 + 116);
+               
                 p.setNombreArtistico(archivo.readUTF());
-                archivo.seek(cod2 + 143);
+                
                 p.setNumeroDeConciertos(archivo.readInt());
-                archivo.seek(cod2 + 147);
+               
                 p.setNumeroDeGiras(archivo.readInt());
-                archivo.seek(cod2 + 151);
+                
                 p.setNumeroDeSencillos(archivo.readInt());
-                archivo.seek(cod2 + 155);
+                
                 p.setSalario(archivo.readDouble());
-                archivo.seek(cod2 + 163);
-                List<Disco> discografiando = null;
+             
+       
 
                 for (int j = 0; j < 10; j++) {
 //leemos datos de un archivo binario, y calculamos la posicion dentro del archivo
 //para cada discoo
-                    archivo.seek(cod2 + (35 * j) + 163);
+                    
                     Disco disco = new Disco();
                     disco.setCodigo(archivo.readInt());
-                    archivo.seek(cod2 + (35 * j) + 167);
+                  
                     disco.setNombre(archivo.readUTF());
-                    archivo.seek(cod2 + (35 * j) + 194);
+                   
                     disco.setAnioDeLanzamiento(archivo.readInt());
                     p.AgregarDisco(disco);
                 }

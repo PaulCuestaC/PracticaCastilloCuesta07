@@ -213,38 +213,38 @@ ruta = rutaCompleta;
             archivo.seek(cod2);
 
             //Leer archivo binario
-            archivo.seek(cod2);
+            
             if (archivo.readUTF() != null) {
-                archivo.seek(cod2);
+                
                 p.setNombre(archivo.readUTF().trim());
-                archivo.seek(cod2 + 31);
+                
                 p.setApellido(archivo.readUTF().trim());
-                archivo.seek(cod2 + 58);
+                
 
                 p.setEdad(archivo.readInt());
-                archivo.seek(cod2 + 62);
+             
                 p.setNumeroDeComposiciones(archivo.readInt());
-                archivo.seek(cod2 + 66);
+               
                 p.setNacionalidad(archivo.readUTF());
-                archivo.seek(cod2 + 93);
+                
                 p.setSalario(archivo.readDouble());
-                archivo.seek(cod2 + 101);
+                
 
                 for (int j = 0; j < 10; j++) {
-                    archivo.seek(cod2 + (66 * j) + 101);
+                    
                     Cancion cancion = new Cancion();
                     cancion.setCodigo(archivo.readInt());
-                    archivo.seek(cod2 + (66 * j) + 105);
+                    
                     cancion.setTitulo(archivo.readUTF());
-                    archivo.seek(cod2 + (66 * j) + 132);
+                    
                     cancion.setTiempoEnMinutos(archivo.readDouble());
-                    archivo.seek(cod2 + (66 * j) + 140);
+                    
                     cancion.setLetra(archivo.readUTF());
                     p.AgregarCancion(cancion);
 
                 }
                 for (int j = 0; j < 10; j++) {
-                    archivo.seek(cod2 + (27 * j) + 734);
+                    
                     Cantante cantante = new Cantante();
                     cantante.setNombreArtistico(archivo.readUTF());
                     p.agregarCliente(cantante);
@@ -258,7 +258,7 @@ ruta = rutaCompleta;
         } catch (FileNotFoundException ex) {
             System.out.println("Archivo no encontrado");
         } catch (IOException ex) {
-            System.out.println("Error de escritura");;
+            System.out.println("Error de escritura");
         }
         return p;
 
