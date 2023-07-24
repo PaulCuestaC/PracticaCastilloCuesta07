@@ -12,6 +12,8 @@ import ec.edu.ups.java.practica02mvc.modelo.Compositor;
 import ec.edu.ups.java.practica02mvc.modelo.Disco;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -138,9 +140,19 @@ public class VentanaCrearCancion extends javax.swing.JInternalFrame {
         getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 450, -1, 34));
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, -1, 34));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, -1, 34));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/canciooooon.png"))); // NOI18N
@@ -148,6 +160,44 @@ public class VentanaCrearCancion extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String cod = txxtCodigoCantante1.getText();
+        try {
+            
+            Compositor compositor = controladorCantante.buscar(cod);
+            txtNombreCantante.setText(compositor.getNombre());
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaCrearCancion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        try {
+            String nombre = txtTitulo.getText();
+            String letra = txtLetra.getText();
+            int codigo = Integer.parseInt(txtCodigo.getText());
+            double tiempo = (double) Integer.parseInt(txtNombreCantante.getText());
+            
+            Cancion cancion = new Cancion();
+            cancion.setCodigo(codigo);
+            cancion.setLetra(letra);
+            cancion.setTiempoEnMinutos(tiempo);
+            cancion.setTitulo(nombre);
+            String codigation = txxtCodigoCantante1.getText();
+            
+            Compositor compositor = controladorCantante.buscar(codigation);
+            compositor.AgregarCancion(cancion);
+            controladorCantante.update(compositor,Integer.parseInt(codigation));
+            
+            String mensajeCancionAñadida = mensajes.getString("mensaje.cancionAñadida");
+            JOptionPane.showMessageDialog(this, mensajeCancionAñadida);
+            
+            limpiarCampos();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaCrearCancion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
     public void limpiarCampos() {
         this.txtCodigo.setText("");
 

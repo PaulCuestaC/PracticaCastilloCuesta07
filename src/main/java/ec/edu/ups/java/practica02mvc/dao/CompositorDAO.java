@@ -260,7 +260,7 @@ ruta = rutaCompleta;
         } catch (IOException ex) {
             System.out.println("Error de escritura");;
         }
-        return null;
+        return p;
 
     }
 

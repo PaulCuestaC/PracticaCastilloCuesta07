@@ -2,13 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 //Cantante dao 2
-
-
 package ec.edu.ups.java.practica02mvc.dao;
 
 import ec.edu.ups.java.practica02mvc.idao.ICantanteDAO;
@@ -33,15 +31,16 @@ import javax.swing.JOptionPane;
  */
 public class CantanteDAO implements ICantanteDAO {
 
-       private String ruta;
+    private String ruta;
 
     private Set<Cantante> lista;
-private String rutaProyecto = System.getProperty("user.dir");
+    private String rutaProyecto = System.getProperty("user.dir");
     private String nombreArchivo = "\\src\\main\\java\\ec\\edu\\ups\\java\\practica02mvc\\archivos\\cantates.dat";
     private String rutaCompleta = rutaProyecto + File.separator + nombreArchivo;
+
     public CantanteDAO() {
-       
-ruta = rutaCompleta;
+
+        ruta = rutaCompleta;
     }
 
     @Override
@@ -102,15 +101,15 @@ ruta = rutaCompleta;
             archivo.writeInt(numeroSencillos);
             archivo.writeDouble(salario);
             if (discografia.size() < 10) {
- //si hay menos de 10 elementos en la lista), el código realiza un bucle "for"                
+                //si hay menos de 10 elementos en la lista), el código realiza un bucle "for"                
                 for (int i = discografia.size() + 1; i < 10; i++) {
-                //Agregar discos adicionales a la lista hasta que alcance 
-                //un total de 10 elementos.
+                    //Agregar discos adicionales a la lista hasta que alcance 
+                    //un total de 10 elementos.
                     Disco e = new Disco();
                     discografia.add(e);
                 }
             }
-            
+
             for (int i = 0; i < 10; i++) {
 //asegurar que el nombre de cada disco en la lista "discografia" tenga 
 //una longitud de exactamente 25 caracteres y si es mas corto se llena de espacios
@@ -133,7 +132,7 @@ ruta = rutaCompleta;
             //el archivo no se encontro
             Logger.getLogger(CantanteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            
+
             JOptionPane.showMessageDialog(null, ex);
         }
     }
@@ -143,13 +142,13 @@ ruta = rutaCompleta;
         int cod2 = Integer.parseInt(cod);
         cod2 = cod2 - 1;
         cod2 = cod2 * 517;
-
+        Cantante p = new Cantante();
         try {
 //abrir un archivo en modo de lectura y escritura y luego se posiciona en una ubicación 
 //específica en ese archivo
             RandomAccessFile archivo = new RandomAccessFile(ruta, "rw");
             archivo.seek(cod2);
-            Cantante p = new Cantante();
+
             //Leer archivo binario
             archivo.seek(cod2);
             if (archivo.readUTF() != null) {
@@ -191,7 +190,7 @@ ruta = rutaCompleta;
                     disco.setAnioDeLanzamiento(archivo.readInt());
                     p.AgregarDisco(disco);
                 }
-                
+
                 archivo.close();
                 return p;
             } else {
@@ -203,10 +202,10 @@ ruta = rutaCompleta;
         } catch (IOException ex) {
             System.out.println("Error de escritura");;
         }
-        return null;
+        return p;
 
-   
     }
+
     @Override
     public void update(Cantante cantante, int pos) {
 
@@ -358,41 +357,40 @@ ruta = rutaCompleta;
 
                 } else {
                     archivo.seek(pos);
-                p.setNombre(archivo.readUTF().trim());
-                archivo.seek(pos + 31);
-                p.setApellido(archivo.readUTF().trim());
-                archivo.seek(pos + 58);
+                    p.setNombre(archivo.readUTF().trim());
+                    archivo.seek(pos + 31);
+                    p.setApellido(archivo.readUTF().trim());
+                    archivo.seek(pos + 58);
 
-                p.setEdad(archivo.readInt());
-                archivo.seek(pos + 62);
-                p.setGeneroMusical(archivo.readUTF());
-                archivo.seek(pos + 89);
-                p.setNacionalidad(archivo.readUTF());
-                archivo.seek(pos + 116);
-                p.setNombreArtistico(archivo.readUTF());
-                archivo.seek(pos + 143);
-                p.setNumeroDeConciertos(archivo.readInt());
-                archivo.seek(pos + 147);
-                p.setNumeroDeGiras(archivo.readInt());
-                archivo.seek(pos + 151);
-                p.setNumeroDeSencillos(archivo.readInt());
-                archivo.seek(pos + 155);
-                p.setSalario(archivo.readDouble());
-                archivo.seek(pos + 163);
-                List<Disco> discografiando;
+                    p.setEdad(archivo.readInt());
+                    archivo.seek(pos + 62);
+                    p.setGeneroMusical(archivo.readUTF());
+                    archivo.seek(pos + 89);
+                    p.setNacionalidad(archivo.readUTF());
+                    archivo.seek(pos + 116);
+                    p.setNombreArtistico(archivo.readUTF());
+                    archivo.seek(pos + 143);
+                    p.setNumeroDeConciertos(archivo.readInt());
+                    archivo.seek(pos + 147);
+                    p.setNumeroDeGiras(archivo.readInt());
+                    archivo.seek(pos + 151);
+                    p.setNumeroDeSencillos(archivo.readInt());
+                    archivo.seek(pos + 155);
+                    p.setSalario(archivo.readDouble());
+                    archivo.seek(pos + 163);
+                    List<Disco> discografiando;
 
-                for (int j = 0; j < 10; j++) {
-                    archivo.seek(pos + (35 * j) + 163);
-                    Disco disco = new Disco();
-                    disco.setCodigo(archivo.readInt());
-                    archivo.seek(pos + (35 * j) + 167);
-                    disco.setNombre(archivo.readUTF());
-                    archivo.seek(pos + (35 * j) + 194);
-                    disco.setAnioDeLanzamiento(archivo.readInt());
-                    lista.add(p);
-                }
+                    for (int j = 0; j < 10; j++) {
+                        archivo.seek(pos + (35 * j) + 163);
+                        Disco disco = new Disco();
+                        disco.setCodigo(archivo.readInt());
+                        archivo.seek(pos + (35 * j) + 167);
+                        disco.setNombre(archivo.readUTF());
+                        archivo.seek(pos + (35 * j) + 194);
+                        disco.setAnioDeLanzamiento(archivo.readInt());
+                        lista.add(p);
+                    }
 
-              
                 }
             }
             archivo.close();
@@ -404,7 +402,5 @@ ruta = rutaCompleta;
         }
         return null;
     }
-
- 
 
 }

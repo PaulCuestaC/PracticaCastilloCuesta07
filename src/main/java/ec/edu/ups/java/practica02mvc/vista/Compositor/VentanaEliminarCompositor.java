@@ -174,6 +174,7 @@ public class VentanaEliminarCompositor extends javax.swing.JInternalFrame {
           
           String mensajeCompositorFueEliminadoCorrectamente = mensajes.getString("mensaje.compositorFueEliminadoCorrectamente");
           JOptionPane.showMessageDialog(this,mensajeCompositorFueEliminadoCorrectamente);
+          limpiarCampos();
       } catch (Exception ex) {
           Logger.getLogger(VentanaEliminarCompositor.class.getName()).log(Level.SEVERE, null, ex);
       }
@@ -202,7 +203,16 @@ public class VentanaEliminarCompositor extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnAceptar1ActionPerformed
 
-
+    public void limpiarCampos() {
+        this.txtApellido.setText("");
+        this.txtCodigo.setText("");
+        this.txtEdad.setText("");
+        this.txtNacionalidad.setText("");
+        this.txtNombre.setText("");
+        this.txtNumeroComposiciones.setText("");
+        this.txtSalario.setText("");
+      
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnAceptar1;
